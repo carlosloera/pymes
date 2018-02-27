@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('apellidoM',150);
             $table->string('apellidoP',150);
             $table->string('email',100)->unique();
+            $table->string('contrasena',150)->unique();
             $table->integer('idRole')->length(11)->unsigned();
             $table->rememberToken();
             $table->timestamps();
