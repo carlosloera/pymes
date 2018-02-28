@@ -14,9 +14,15 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $table = "users";
+    //protected $table = "users";
     protected $fillable = [
-        'idMatricula','nombre','apellidoM','apellidoP','email','contrasena','idRole'
+        'id_matricula',
+        'nombre',
+        'apellidoM',
+        'apellidoP',
+        'email',
+        'password',
+        'id_role',
     ];
 
     /**
@@ -25,6 +31,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'contrasena', 'remember_token',
+        'password', 'remember_token',
     ];
+
+    public function role(){
+        return $this->belongsTo('App\Role');
+    }
 }

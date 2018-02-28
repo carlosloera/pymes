@@ -13,9 +13,9 @@ class CategoryMigration extends Migration
      */
     public function up()
     {
-        Schema::create('Category', function (Blueprint $table) {
-            $table->increments('idCategory');
-            $table->enum('Type',['Binary','Open','MultipleC']);
+        Schema::create('categories', function (Blueprint $table) {
+            $table->increments('id_category');
+            $table->enum('type',['Binary','Open','MultipleC']);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CategoryMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Category');
+        Schema::dropIfExists('categories');
     }
 }

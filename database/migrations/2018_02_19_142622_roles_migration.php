@@ -13,9 +13,9 @@ class RolesMigration extends Migration
      */
     public function up()
     {
-        Schema::create('Roles', function (Blueprint $table) {
-            $table->increments('idRole');
-            $table->enum('Rol',['Admin','Estudiante']);
+        Schema::create('roles', function (Blueprint $table) {
+            $table->increments('id_role');
+            $table->enum('role',['Admin','Estudiante']);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class RolesMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Roles');
+        Schema::dropIfExists('roles');
     }
 }

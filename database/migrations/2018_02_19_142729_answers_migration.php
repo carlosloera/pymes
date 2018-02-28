@@ -13,13 +13,13 @@ class AnswersMigration extends Migration
      */
     public function up()
     {
-        Schema::create('Answers', function (Blueprint $table) {
-            $table->increments('idAnswers');
-            $table->text('Answers');
-            $table->text('Comments');
-            $table->integer('idQuestion')->length(11)->unsigned();
-            $table->integer('idMatricula')->length(11)->unsigned();
-            $table->integer('idPeriods')->length(11)->unsigned();
+        Schema::create('answers', function (Blueprint $table) {
+            $table->increments('id_answers');
+            $table->text('answer');
+            $table->text('comment');
+            $table->integer('id_question')->length(11)->unsigned();
+            $table->integer('id_matricula')->length(11)->unsigned();
+            $table->integer('id_periods')->length(11)->unsigned();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class AnswersMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Answers');
+        Schema::dropIfExists('answers');
     }
 }

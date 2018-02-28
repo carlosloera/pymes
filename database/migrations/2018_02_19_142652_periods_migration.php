@@ -13,8 +13,8 @@ class PeriodsMigration extends Migration
      */
     public function up()
     {
-        Schema::create('Periods', function (Blueprint $table) {
-            $table->increments('idPeriods');
+        Schema::create('periods', function (Blueprint $table) {
+            $table->increments('id_periods');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ class PeriodsMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Periods');
+        Schema::dropIfExists('periods');
     }
 }

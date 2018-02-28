@@ -13,9 +13,9 @@ class AreaMigration extends Migration
      */
     public function up()
     {
-        Schema::create('Area', function (Blueprint $table) {
-            $table->increments('idArea');
-            $table->enum('Area',['Principal','Secundaria']);
+        Schema::create('areas', function (Blueprint $table) {
+            $table->increments('id_area');
+            $table->enum('area',['Principal','Secundaria']);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class AreaMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Area');
+        Schema::dropIfExists('areas');
     }
 }

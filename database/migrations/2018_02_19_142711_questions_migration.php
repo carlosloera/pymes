@@ -13,11 +13,11 @@ class QuestionsMigration extends Migration
      */
     public function up()
     {
-        Schema::create('Questions', function (Blueprint $table) {
-            $table->increments('idQuestion');
-            $table->text('Question');
-            $table->integer('idCategory')->length(11)->unsigned();
-            $table->integer('idArea')->length(11)->unsigned();
+        Schema::create('questions', function (Blueprint $table) {
+            $table->increments('id_question');
+            $table->text('question');
+            $table->integer('id_category')->length(11)->unsigned();
+            $table->integer('id_area')->length(11)->unsigned();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class QuestionsMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Questions');
+        Schema::dropIfExists('questions');
     }
 }
