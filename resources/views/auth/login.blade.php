@@ -43,7 +43,7 @@
                             <div class="col-md-6 offset-md-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recordar Usuario
                                     </label>
                                 </div>
                             </div>
@@ -51,12 +51,12 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
+                                <button type="submit" class="btn btn-primary" style="background-color: #c5101a">
+                                    Iniciar sesion
                                 </button>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
+                                    Recuperar Contraseña
                                 </a>
                             </div>
                         </div>
