@@ -18,6 +18,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <style>
+       
+    </style>
+    
+    <link href="https://fonts.googleapis.com/css?family=Anton|Patua+One|PT+Sans+Caption" rel="stylesheet">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>    
 
@@ -32,8 +37,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #c5101a;" >
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Auditoria
+                <a class="navbar-brand" href="{{ url('/procesos') }}" style="color:white; font-family: 'PT Sans Caption', sans-serif;">
+                   <img style="width:52px;" src="{{ asset('img/logo.png') }}" alt=""> Auditoria
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -49,19 +54,22 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">Iniciar sesion</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">Registro</a></li>
+                            <li><a class="nav-link btn "  href="{{ route('login') }}" style="color:white; font-family: 'PT Sans Caption', sans-serif;;, sans-serif;   margin: 10px; border: solid 2px white;">Iniciar sesion</a></li>
+                            <li><a class="nav-link btn "  href="{{ route('register') }}" style="color:white; font-family: 'PT Sans Caption', sans-serif;;', sans-serif;  margin: 10px; border: solid 2px white;">Registrarse</a></li>
                         @else
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->nombre }} <span class="caret"></span>
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white; font-family: 'PT Sans Caption', sans-serif;">
+                                <i class="fas fa-user" style="font-size:23px;"></i>  <span class="caret">{{ Auth::user()->nombre }}</span>
                                 </a>
+                                
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        Cerrar sesion
-                                    </a>
+                                <a class="dropdown-item" href=""></a>
+                                <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            Cerrar sesion
+                                        </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -84,6 +92,7 @@
 
     <script>
         $("#pdf").click(function(){
+            console.log("hjnhhjkjk");
             $('input[name=fecha]').prop('type', 'text');
             $('input[name=pagina]').prop('type', 'text');
             $('input[name=pagina_de]').prop('type', 'text');

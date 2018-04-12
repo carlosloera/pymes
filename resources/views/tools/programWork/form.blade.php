@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('proceso')
 
-@section('content')
+@section('herramientas')
 
 
 
@@ -85,10 +85,10 @@
 
     <hr>
 
-    <table class="table table-hover table-bordered">
+    <table class="table  table-bordered">
     <thead>
         <tr>
-            <th scope="col" rowspan="3" >Numero</th>
+            <th scope="col"  rowspan="3" >Numero</th>
             <th scope="col" rowspan="3"  >Actividad</th>
             <th scope="col" rowspan="3"  >Responsable Especifico</th>
             
@@ -106,6 +106,7 @@
             <th colspan="1">        </th>
             <th colspan="1">        </th>
             <th colspan="1">        </th>
+            
         </tr>
            
         
@@ -118,7 +119,7 @@
             @endphp
         @foreach($worknum as $num)
             
-            <tr>
+            <tr id="addr"+{{ $i }}>
             <th scope="row">{{ $i }}</th>
                 <td><input type="text" name="actividad[]" value="{{ $num->actividad }}"  id="actividad"> </td>
                 <td><input type="text" name="responsable_especifico[]" value="{{ $num->responsable }}"></td>
@@ -137,7 +138,18 @@
        
         
     </tbody>
+    
     </table>
+    <div class="row">
+        <div class="col-md-1 offset-md-8">
+                <button type="button" class="btn btn-danger" id="agregar"><i class="fas fa-plus-circle"></i> Agregar Fila</button>
+                
+            <!--<a class="btn btn-success" href="{{ route('pdfWork', $work->process_id) }}">Imprimir</a>-->
+        </div>
+        <div class="col-md-1 offset-md-1">
+                <button id="eliminar" type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i> Eliminar Fila</button> 
+        </div>
+    </div>
     <h1></h1>
    
         <div >
@@ -182,21 +194,22 @@
 
         </div>
         <div class="row">
-            <button type="submit" class="btn " id="registrar" style="background-color: #009688;">
-                                    Register
-                                </button>
-               
-            </div>
+            <button type="submit" class="btn btn-danger " id="registrar" >
+                Guardar
+            </button>
+            <div class="col-md-3">
+                <button id="pdfwork" class="btn btn-danger" id="imprimir">pasar a pdf</button>
+            </div>   
+        </div>
 
     </form>
     <div class="row">
-        <button class="btn" id="agregar">add</button>
-        <!--<a class="btn btn-success" href="{{ route('pdfWork', $work->process_id) }}">Imprimir</a>-->
-        <button id="pdfwork" class="btn btn-success" id="imprimir">pasar a pdf</button>
+        
+       
     </div>
 </div>
 <br>
 <div class="row">
-            <a class="btn btn-success" href="{{ route('proceso',   $work->process_id) }}">Regresar</a>
+           <!-- <a class="btn btn-success" href="{{ route('proceso',   $work->process_id) }}">Regresar</a>-->
 </div>
 @endsection

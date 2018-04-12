@@ -48,7 +48,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'id_matricula' => 'required|integer',
+            
             'nombre' => 'required|string|max:150',
             'apellidoM' => 'required|string|max:150',
             'apellidoP' => 'string|max:150',
@@ -68,7 +68,7 @@ class RegisterController extends Controller
     {
         //dd($data);
         return User::create([
-            'id_matricula' => $data['id_matricula'],
+           
             'nombre' => $data['nombre'],
             'apellidoM' => $data['apellidoM'],
             'apellidoP' => $data['apellidoP'],

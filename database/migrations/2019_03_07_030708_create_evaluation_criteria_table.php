@@ -16,7 +16,7 @@ class CreateEvaluationCriteriaTable extends Migration
         Schema::create('evaluation_criteria', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('process_id')->unsigned();
-            $table->foreign('process_id')->references('id')->on('processes');
+            $table->foreign('process_id')->references('id')->on('processes')->onDelete('cascade');
             $table->string('pagina1');
             $table->string('pagina1_de');
             $table->string('pagina2');

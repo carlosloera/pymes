@@ -16,7 +16,6 @@ class User extends Authenticatable
      */
     //protected $table = "users";
     protected $fillable = [
-        'id_matricula',
         'nombre',
         'apellidoM',
         'apellidoP',

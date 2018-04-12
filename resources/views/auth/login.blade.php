@@ -4,22 +4,28 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card card-default">
-                <div class="card-header">Login</div>
-
+            <div class="card card-default usuario"   >
+                <!--<div class="card-header">Login
+                    
+                </div>
+                -->
+                <div style="text-align: center; margin-top:10px;">
+                    <img  src="{{ asset('img/user.png') }}" style="width: 100px;" alt="">
+                </div> 
+                
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="id_matricula" class="col-sm-4 col-form-label text-md-right">Matricula</label>
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">Email</label>
 
                             <div class="col-md-6">
-                                <input id="id_matricula" type="text" class="form-control{{ $errors->has('id_matricula') ? ' is-invalid' : '' }}" name="id_matricula" value="{{ old('id_matricula') }}" required autofocus>
+                                <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
-                                @if ($errors->has('id_matricula'))
+                                @if ($errors->has('email'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('id_matricula') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -50,8 +56,8 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary" style="background-color: #c5101a">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-block" style="background-color: #c5101a; color:white;">
                                     Iniciar sesion
                                 </button>
 

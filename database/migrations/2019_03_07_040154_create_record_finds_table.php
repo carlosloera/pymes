@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecordsFindingsTable extends Migration
+class CreateRecordFindsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateRecordsFindingsTable extends Migration
         Schema::create('record_finds', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('process_id')->unsigned();
-            $table->foreign('process_id')->references('id')->on('processes');
+            $table->foreign('process_id')->references('id')->on('processes')->onDelete('cascade');
             $table->string('pagina1');
             $table->string('pagina1_de');
             $table->string('pagina2');

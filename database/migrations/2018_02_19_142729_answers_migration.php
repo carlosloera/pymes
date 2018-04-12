@@ -17,9 +17,9 @@ class AnswersMigration extends Migration
             $table->increments('id_answers');
             $table->text('answer');
             $table->text('comment');
-            $table->integer('id_question')->length(11)->unsigned();
-            $table->integer('id_matricula')->length(11)->unsigned();
-            $table->integer('id_periods')->length(11)->unsigned();
+            $table->integer('id_question')->unsigned();
+            $table->integer('id_matricula')->unsigned();
+            $table->integer('id_periods')->unsigned();
             $table->timestamps();
         });
     }

@@ -83,7 +83,7 @@ class ProcessController extends Controller
         //$user = Process::with('documental_analises')->get();
         //$result = $user->documental_analisis()->where('id',$user->id)->get();
         
-        return view('tools.documentalAnalisis.form', compact('analisis'));
+        return view('tools.documentalAnalisis.form', compact('analisis','id'));
        // echo "<pre>";
         //print_r($user);
         //echo "</pre>";
@@ -131,7 +131,7 @@ class ProcessController extends Controller
     public function evaluationCriteria($id)
     {
         $criterios =  EvaluationCriterion::where('process_id',$id)->first();
-        return view('tools.criteriosEvaluacion.form', compact('criterios'));
+        return view('tools.criteriosEvaluacion.form', compact('criterios','id'));
 
     }
     public function createEvaluationCriteria(Request $request)
@@ -176,7 +176,7 @@ class ProcessController extends Controller
     public function failureDetection($id)
     {
         $deteccion =  FailureDetection::where('process_id',$id)->first();
-        return view('tools.deteccionFallas.form', compact('deteccion'));
+        return view('tools.deteccionFallas.form', compact('deteccion','id'));
     }
     public function createFailureDetection( Request $request )
     {
@@ -218,7 +218,7 @@ class ProcessController extends Controller
     public function recordFind($id)
     {
         $registro =  RecordFind::where('process_id',$id)->first();
-        return view('tools.registroEvidencias.form', compact('registro'));
+        return view('tools.registroEvidencias.form', compact('registro','id'));
     }
 
     public function createRecordFind( Request $request )
@@ -263,7 +263,7 @@ class ProcessController extends Controller
         $work =  WorkProgram::where('process_id',$id)->first();
         $worknum = WorkProgramNum::where('work_programs_id',$work->id)->get();
         //dd($worknum);
-        return view('tools.programWork.form', compact('work','worknum'));
+        return view('tools.programWork.form', compact('work','worknum','id'));
     }
 
     public function createWorkProgram(Request $request)
@@ -321,7 +321,7 @@ class ProcessController extends Controller
          $evaluacion =  FinalEvaluationCriterion::where('process_id',$id)->first();
         
          //dd($worknum);
-         return view('tools.criteriosEvaluacionFinal.form', compact('evaluacion'));
+         return view('tools.criteriosEvaluacionFinal.form', compact('evaluacion','id'));
 
 
     }

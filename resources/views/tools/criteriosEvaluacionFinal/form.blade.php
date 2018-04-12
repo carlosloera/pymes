@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('proceso')
 
 
-@section('content')
+@section('herramientas')
 
 <div class="container">
 
@@ -197,12 +197,12 @@
         </table>
         <input type="hidden" value="{{ $evaluacion->process_id }}" name="process_id">
         <div class="row">
-            <button type="submit" class="btn " style="background-color: #009688;" id="registrar">
-                                    Register
+            <button type="submit" class=" btn btn-danger "  id="registrar">
+            Guardar
                                 </button>
                 <div class="col-md-3">
                     <!--<a class="btn btn-success"  href="{{ route('pdfEvaluacionFinal', $evaluacion->process_id) }}">Imprimir</a> -->
-                    <button id="pdf" class="btn btn-success" id="imprimir">pasar a pdf</button>
+                    <button id="pdf" class="btn btn-danger" id="imprimir">pasar a pdf</button>
                 </div>    
             </div>
 
@@ -215,7 +215,7 @@
 </div>
 <br>
     <div class="row">
-            <a class="btn btn-success" href="{{ route('proceso',   $evaluacion->process_id) }}">Regresar</a>
+        <!--    <a class="btn btn-success" href="{{ route('proceso',   $evaluacion->process_id) }}">Regresar</a>-->
 </div>
 
 @endsection

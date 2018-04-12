@@ -16,7 +16,7 @@ class CreateDocumentalAnalisisTable extends Migration
         Schema::create('documental_analises', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('process_id')->unsigned();
-            $table->foreign('process_id')->references('id')->on('processes');
+            $table->foreign('process_id')->references('id')->on('processes')->onDelete('cascade');
             $table->date('fecha')->nullable();
             $table->string('num_hoja');
             $table->string('num_hoja_de');

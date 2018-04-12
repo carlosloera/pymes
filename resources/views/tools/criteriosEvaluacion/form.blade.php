@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('proceso')
 
 
-@section('content')
+@section('herramientas')
 
     <div class="container">
     <form action="{{ route('crearEvaluacion') }}" method="POST" id="form">
@@ -162,12 +162,12 @@
 
 
             <div class="row">
-            <button type="submit" class="btn " id="registrar" style="background-color: #009688;">
-                                    Register
+            <button type="submit" class="btn btn-danger " id="registrar">
+            Guardar
                                 </button>
                 <div class="col-md-3">
                    <!-- <a class="btn btn-success" href="{{ route('pdfEvaluacion', $criterios->process_id) }}">Imprimir</a>-->
-                   <button id="pdf" class="btn btn-success" >pasar a pdf</button>
+                   <button id="pdf" class="btn btn-danger" >pasar a pdf</button>
 
                 </div>  
                 
@@ -183,6 +183,6 @@
     </div>
    <br>
     <div class="row">
-            <a class="btn btn-success" href="{{ route('proceso',  $criterios->process_id) }}">Regresar</a>
+          <!--  <a class="btn btn-success" href="{{ route('proceso',  $criterios->process_id) }}">Regresar</a>-->
     </div>
  @endsection

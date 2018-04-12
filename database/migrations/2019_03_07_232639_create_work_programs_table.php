@@ -16,7 +16,7 @@ class CreateWorkProgramsTable extends Migration
         Schema::create('work_programs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('process_id')->unsigned();
-            $table->foreign('process_id')->references('id')->on('processes');
+            $table->foreign('process_id')->references('id')->on('processes')->onDelete('cascade');
             $table->string('area');
             $table->date('inicio');
             $table->date('terminacion');

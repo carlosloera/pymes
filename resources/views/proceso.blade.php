@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>    
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -43,7 +47,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   
-                  <span class="hidden-xs">Nombre del usuario</span>
+                  <span class="hidden-xs">{{ Auth::user()->nombre }}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -88,7 +92,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="{{ route('workProgram', $id) }}"><i class="far fa-dot-circle"></i> Programa de Trabajo</a></li>
-                <li><a href="{{ route('analisis', $id) }}"><i class="far fa-dot-circle"></i> Cedula de Analisis Documental</a></li>
+                <li><a href="{{ route('analisis', $id) }}"><i class="far fa-dot-circle"></i> Cedula de Analisis <br> &nbsp;&nbsp;&nbsp; Documental</a></li>
                 <li ><a href="{{ route('registro', $id) }}"><i class="far fa-dot-circle">
 
                     </i> Cedula para la deteccion <br> &nbsp; &nbsp; &nbsp; &nbsp; y registros  de
@@ -116,7 +120,7 @@
             <li class="treeview">
               <a href="#">
                 <i class="fas fa-book"></i>
-                <span>Questionario</span>
+                <span>Cuestionario</span>
                  
               </a>
               
@@ -129,7 +133,14 @@
               </a>
              
             </li>
-                       
+            <li class="treeview">
+              <a href="{{ route('procesos') }}">
+                <i class="fas fa-chevron-circle-left"></i>
+                <span>Regresar</span>
+                 
+              </a>
+             
+            </li>           
             
                         
           </ul>
@@ -163,7 +174,8 @@
                 <div class="box-body">
                   	<div class="row">
 	                  	<div class="col-md-12">
-		                          <!--Contenido-->
+		                          @yield('herramientas')
+                                  
                               <h3></h3>
 		                          <!--Fin Contenido-->
                            </div>
@@ -190,6 +202,64 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('js/app.min.js') }}  "></script>
     
+    <script>
+        $("#pdf").click(function(){
+            console.log("hjnhhjkjk");
+            $('input[name=fecha]').prop('type', 'text');
+            $('input[name=pagina]').prop('type', 'text');
+            $('input[name=pagina_de]').prop('type', 'text');
+            $('input[name=fecha2]').prop('type', 'text');
+            $('input[name=pagina1]').prop('type', 'text');
+            $('input[name=pagina1_de]').prop('type', 'text');
+            $('input[name=pagina2]').prop('type', 'text');
+            $('input[name=pagina2_de]').prop('type', 'text');
+            $('input[name=numero]').prop('type', 'text');
+            $('input[name=num_hoja]').prop('type', 'text');
+            $('input[name=num_hoja_de]').prop('type', 'text');
+            $("#registrar").hide();
+            $("#pdf").hide();
+            html2canvas($("#form"), {
+                    useCORS: true,
+                    onrendered: function(canvas) {
+                        var img =canvas.toDataURL("image/jpeg,1.0");
+                        var pdf = new jsPDF();
+                        pdf.addImage(img, 'JPEG', 5, 25, 200, 200);
+                        pdf.save('mapa.pdf');
+
+                       
+                        $("#registrar").show();   
+                        $("#pdf").show();
+                        
+                    }
+                       
+            });
+            
+        });
+
+
+
+        $(document).ready(function(){
+            var i=0;
+            $('#agregar').click(function(){
+                i++;
+                $('#dynamic_field').append('<tr id="addr'+i+'" ><th scope="row"> '+i+'</th><td><input type="text" name="actividad[]" id="actividad"> </td><td><input type="text" name="responsable_especifico[]" ></td><td><input type="text" name="semana[]" ></td><td><input type="checkbox"  name="semana1[]"  ></td><td><input type="checkbox"  name="semana2[]" ></td><td><input type="checkbox" name="semana3[]" ></td><td><input type="checkbox" name="semana4[]" ></td></tr> ');
+            });
+
+            $("#eliminar").click(function(){
+              console.log(i);
+                if(i>0){
+                    $("#addr"+(i)).remove();
+                    i--;
+                }
+            });
+
+        })
+
+       
+
+
+      </script>
+
 </body>
 
 

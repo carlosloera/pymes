@@ -16,7 +16,7 @@ class CreateFinalEvaluationCriteriaTable extends Migration
         Schema::create('final_evaluation_criteria', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('process_id')->unsigned();
-            $table->foreign('process_id')->references('id')->on('processes');
+            $table->foreign('process_id')->references('id')->on('processes')->onDelete('cascade');
             $table->date('fecha');
             $table->string('pagina');
             $table->string('pagina_de');

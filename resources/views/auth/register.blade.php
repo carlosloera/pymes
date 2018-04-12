@@ -5,26 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">Register</div>
+                <div class="card-header bg-dark" style="color:white; text-align:center;">Registro</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="id_matricula" class="col-md-4 col-form-label text-md-right">Matricula</label>
-
-                            <div class="col-md-6">
-                                <input id="id_matricula" type="text" class="form-control{{ $errors->has('id_matricula') ? ' is-invalid' : '' }}" name="id_matricula" value="{{ old('id_matricula') }}" required autofocus>
-
-                                @if ($errors->has('id_matricula'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('id_matricula') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
+                       
                         <div class="form-group row">
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
 
@@ -123,8 +110,8 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn " style="background-color: #009688;">
-                                    Register
+                                <button type="submit" class="btn  btn-danger btn-block" style="color: white;" >
+                                    Registrar
                                 </button>
                             </div>
                         </div>

@@ -10,6 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//ERIK--------------------------------------------------------------
+Route::resource('/questions','questionController');
+//Route::get('/questions','questionController@index')->name('questions');
+//Route::get('/questionsCrear','questionController@create')->name('questionsCreate');
+
+//CARLOS-------------------------------------------------
 Route::get('evaluacion',function(){
     return view('tools.criteriosEvaluacionFinal.form');
 });
@@ -41,6 +48,10 @@ Route::post('crearRegistri','ProcessController@createRecordFind')->name('crearRe
 Route::get('pdfRegistro/{id}','ProcessController@pdfRegistro')->name('pdfRegistro');
 
 
+//Cesar-----------------------------------
+Route::get('/Administrador','userController@index')->name('Administrador');
+Route::get('/Administrador/{id}/mostrar','userController@show')->name('mostrarAdministrador');
+Route::resource('/users','userController');
 
 Route::get('/', function () {
     return view('auth.login');
@@ -67,7 +78,7 @@ Route::get('criteriosEvaluacion',function() {
     return view('tools.criteriosEvaluacion.form');
 });
 
-Route::get('procesos','ProcessController@procesos');
+Route::get('procesos','ProcessController@procesos')->name('procesos');
 Route::post('crearProceso','ProcessController@crearProceso')->name('crearProceso');
 Route::get('proceso/{id}','ProcessController@proceso')->name('proceso');
 
