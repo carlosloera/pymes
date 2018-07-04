@@ -8,6 +8,8 @@ use App\Question;
 
 use App\Closed_answer;
 
+use App\Answer;
+
 use Illuminate\Http\Request;
 
 class questionController extends Controller
@@ -196,6 +198,14 @@ class questionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function obtener($id){
+        $questions = Question::paginate(2);
+        $closed = Closed_answer::all();
+       // $answers = Answer::where('id_periods',$id)->get();
+        return view('questions.cuestionario',compact('questions','id'));
+    }
+
     public function destroy($id)
     {
         Question::findOrFail($id) -> delete();

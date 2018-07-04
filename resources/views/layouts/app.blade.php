@@ -54,27 +54,26 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a class="nav-link btn "  href="{{ route('login') }}" style="color:white; font-family: 'PT Sans Caption', sans-serif;;, sans-serif;   margin: 10px; border: solid 2px white;">Iniciar sesion</a></li>
+                            <!--<li><a class="nav-link btn "  href="{{ route('login') }}" style="color:white; font-family: 'PT Sans Caption', sans-serif;;, sans-serif;   margin: 10px; border: solid 2px white;">Iniciar sesion</a></li>
                             <li><a class="nav-link btn "  href="{{ route('register') }}" style="color:white; font-family: 'PT Sans Caption', sans-serif;;', sans-serif;  margin: 10px; border: solid 2px white;">Registrarse</a></li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white; font-family: 'PT Sans Caption', sans-serif;">
-                                <i class="fas fa-user" style="font-size:23px;"></i>  <span class="caret">{{ Auth::user()->nombre }}</span>
+                            -->
+                            @else
+                            <li class="nav-item dropdown" style="color:white; ">
+                                
+                                <i class="fas fa-user" style="font-size:23px; "></i>  <span class="caret">{{ Auth::user()->nombre }}</span>
                                 </a>
                                 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href=""></a>
-                                <div class="dropdown-divider"></div>
+                               
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
+                                                        document.getElementById('logout-form').submit();" style="color:white; hover: #c5101a;">
                                             Cerrar sesion
                                         </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                                </div>
+                                
                             </li>
                         @endguest
                     </ul>
@@ -86,11 +85,20 @@
             @yield('content')
         </main>
     </div>
-
+        
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+<!--Ajax-->
+    
 
+    
+
+
+
+    <script src="{{ asset('js/app.js') }}"></script>
+    
+    
     <script>
+        console.log("hola mundo");
         $("#pdf").click(function(){
             console.log("hjnhhjkjk");
             $('input[name=fecha]').prop('type', 'text');
@@ -230,7 +238,154 @@
             $('#porcentaje_control').val((100/$('#control1').val())*$('#control2').val());
         });
 
+        $(document).ready(function () {
+            $('#tbQuestionsList').DataTable({
+                "language" : {
+                    "url" : "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                }
+            });
+        });
 
+        $("#addClause").click(function(){ 
+            var contenedor, numAux, fila, campo, boton;
+
+            contenedor = $("#closedAnswersL"); 
+            numAux = $("#closedAnswersL > div").length;
+
+            if (numAux < 26) {
+                campo ='<div class="col-md-8"><input type="text" class="form-control" name="opciones[]" placeholder="Inciso '+ String.fromCharCode(numAux + 65)+'"></div>';
+
+                boton ='<div class="col-md-4"><input type="button" class="btn btn-danger btn-block" name="borrar[]" value="Eliminar"></div>';
+
+                fila = '<div class="row form-group w-100" id="r_' + numAux + '">' + campo + boton + '</div>';
+
+                $(contenedor).append(fila);
+            } else{
+                alert('Ha superado el limite de incisos');
+            }
+        });
+
+        $(":radio[name=typeQuestion]").click(function(){
+            var contenedor = $("#closedAnswersL");
+            var boton = $("#closedAnswersB");
+
+            if($(this).val() === "3" && $(this).prop("checked", true)){
+                contenedor.prop("style", "display: visible;");
+                boton.prop("style", "display: visible;");
+                $("#closedAnswersL > div > div > :text").prop("required", true);
+            }else{
+                contenedor.prop("style", "display: none;");
+                boton.prop("style", "display: none;");
+                $("#closedAnswersL > div > div > :text").prop("required", false);
+            }
+        });
+
+        $("#closedAnswersL").on("click", ".btn-danger", function(){
+            var id, numAux, padre;
+            numAux = $("#closedAnswersL > div").length;
+
+            if(numAux > 2){
+                id = Number($(this).parent().parent().prop("id").substring(2));
+
+                var estaSeguro = true;
+
+                if($("#r_" + id + " :text").val().trim() !== ''){
+                    estaSeguro = confirm('Este campo posee texto ¿Esta seguro que quiere borrarlo?');
+                }
+
+                if(estaSeguro){
+                    $("#r_" + id).remove();
+
+                    for(var i = id; i + 1 < numAux; i++){
+                        $("#r_" + (i + 1) + " > div > :text").prop("placeholder", "Inciso " + String.fromCharCode(i + 65));
+                        $("#r_" + (i + 1)).prop("id", "r_" + i);
+                    }
+                }
+            }else{
+                alert('Como mínimos dos incisos');
+            }
+        });
+
+        $("#tbQuestionsList tr td form").on('submit', function(e){
+            var estaSeguro = confirm("¿Esta seguro que desea eliminar esta pregunta? Se eliminará toda la información relacionada");
+
+            if(!estaSeguro){
+                e.preventDefault();
+            }
+        });
+
+
+         //INDICADORES
+
+        // Añade dinámicamente los elementos necesarios para que el usuario ingrese el indicador
+        $("#addIndicator").click(function(){ 
+            var contenedor, numAux, fila, campo, select, boton;
+
+            contenedor = $("#IndicatorsList"); 
+            numAux = $("#IndicatorsList > div").length;
+
+            if (numAux < 100) {
+                campo = '<div class="col-md-12"><input type="text" class="form-control" name="indicators[]" placeholder="Ingrese una descripción." required></div>';
+
+                select = '<div class="col-md-6 mt-1"><select class="form-control" name="typeIndicator[]"><option value="Qualitative">Cualitativo</option><option value="Quantitative">Cuantitativo</option></select></div>';
+
+                boton ='<div class="col-md-6 mt-1"><input type="button" class="btn btn-danger btn-block" name="borrar[]" value="Eliminar"></div>';
+
+                fila = '<div class="row form-group w-100" id="r_' + numAux + '">' + campo + select +  boton + '</div>';
+
+                $(contenedor).append(fila);
+            } else{
+                alert('Ha superado el limite de incisos');
+            }
+        });
+
+        // Evento para eliminar el indicador seleccionado
+        $("#IndicatorsList").on("click", ".btn-danger", function(){
+            var id, numAux, padre;
+            numAux = $("#IndicatorsList > div").length;
+
+            if (numAux > 1) {
+                id = Number($(this).parent().parent().prop("id").substring(2));
+
+                var estaSeguro = true;
+
+                if($("#r_" + id + " :text").val().trim() !== ''){
+                    estaSeguro = confirm('Este campo posee texto ¿Esta seguro que quiere borrarlo?');
+                }
+
+                if(estaSeguro){
+                    $("#r_" + id).remove();
+
+                    for(var i = id; i + 1 < numAux; i++){
+                        $("#r_" + (i + 1)).prop("id", "r_" + i);
+                    }
+                }
+            }else{
+                alert('Se requiere de al menos un indicador');
+            }
+        });
+
+        // Modifica el placeholder cuando se cambia el tipo de indicador
+        $("#IndicatorsList").on("change", "select", function(){
+            var id = $(this).parent().parent().prop("id");
+            console.log(id);
+
+            if ($(this).val() === "Qualitative") {
+                $("#"+id+" :text").prop("placeholder", "Ingrese una descripción.");
+            }else{
+                $("#"+id+" :text").prop("placeholder", "Ingrese una fórmula. p. ej. (Efectivo + Inversión en valores) / Pasivo a corto plazo");
+            }
+        });
+
+        // Confirmación al borrar
+        $("#tbIndicatorsList tr td form").on('submit', function(e){
+            var estaSeguro = confirm("¿Esta seguro que desea eliminar esta pregunta? Se eliminará toda la información relacionada");
+
+            if(!estaSeguro){
+                e.preventDefault();
+            }
+        });
+        //-----------------------------------------------------------------------------
 
     </script>
 </body>

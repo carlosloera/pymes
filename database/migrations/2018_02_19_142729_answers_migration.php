@@ -20,6 +20,8 @@ class AnswersMigration extends Migration
             $table->integer('id_question')->unsigned();
             $table->integer('id_matricula')->unsigned();
             $table->integer('id_periods')->unsigned();
+            $table->foreign('id_question')->references('id_question')->on('questions')->onDelete('cascade');
+            $table->foreign('id_periods')->references('id')->on('process')->onDelete('cascade');
             $table->timestamps();
         });
     }

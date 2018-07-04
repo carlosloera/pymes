@@ -28,7 +28,7 @@
   cursor: default;">Ver</a>
                </div>
                <div class="d-inline">
-                  <a  class="btn btn-outline-dark" href="{{route('users.edit',$item->id)}}">Editar {{ $item->id }} </a>
+                  <a  class="btn btn-outline-dark" href="{{route('users.edit',$item->id)}}">Editar  </a>
                </div>
                <form action="{{route('users.destroy',$item->id)}}" method="post" class="d-inline">
                   <button type="button"  class="btn btn-outline-danger"  data-toggle="modal" data-target="#exampleModalCenter.{{$item->id}}" >Eliminar</button>

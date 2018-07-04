@@ -202,7 +202,7 @@
                                 </button>
                 <div class="col-md-3">
                     <!--<a class="btn btn-success"  href="{{ route('pdfEvaluacionFinal', $evaluacion->process_id) }}">Imprimir</a> -->
-                    <button id="pdf" class="btn btn-danger" id="imprimir">pasar a pdf</button>
+                    <button id="pdf" class="btn btn-danger" >pasar a pdf</button>
                 </div>    
             </div>
 

@@ -6,8 +6,8 @@
 	    	{{ method_field('PUT') }}
 	    	{{ csrf_field() }}
 	    	
-			<div class="card border-info">
-				<div class="card-header bg-info text-white"><b>Insertar pregunta</b></div>
+			<div class="card border-dark">
+				<div class="card-header bg-dark text-white"><b>Insertar pregunta</b></div>
 				<div class="card-body col-md-10 offset-md-1">
 					<div class="row form-group">
 						<label>Pregunta</label>
@@ -90,11 +90,11 @@
 				    </div>
 
 					<div class="row form-group">
-						<input type="submit" class="btn btn-info btn-block mx-auto" value="Guardar">
+						<input type="submit" class="btn btn-danger btn-block mx-auto" value="Guardar">
 					</div>
 
 					<div class="row form-group">
-						<a class="btn btn-info btn-block mx-auto"  href="{{ route('questions.index') }}">Cancelar</a>
+						<a class="btn btn-danger btn-block mx-auto"  href="{{ route('questions.index') }}">Cancelar</a>
 					</div>
 				</div>
 			</div>

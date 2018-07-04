@@ -36,23 +36,40 @@
                </div>
             </div>
             
-            <div class="form-group row" >
+            <!--<div class="form-group row" >
                <label for="lbl_rol" class="col-md-4 col-form-label text-md-right" >Rol</label>
                <div class="col-md-6">
                     <select class="form-control" name="id_role" id="lbl_rol" >
-                        <option value="1">Administrador</option>
-                        <option value="2">Alumno encargado del equipo</option>
-                        <option value="3">Alumno</option>
+                        <option value="1">Admin</option>
+                        <option value="2">Estudiante</option>
                     </select>
                </div>
             </div>
-            
-            <div class="form-group row" >
+            -->
+            <div class="form-group row">
+                            <label for="id_role" class="col-md-4 col-form-label text-md-right">Rol</label>
+
+                            <div class="col-md-6">
+                                <!<input id="idRole" type="text" class="form-control{{ $errors->has('idRole') ? ' is-invalid' : '' }}" name="idRole" value="{{ old('idRole') }}" required autofocus>
+                                <select  id="id_role" name="id_role"  class="form-control{{ $errors->has('id_role') ? ' is-invalid' : '' }}"  value="{{ old('id_role') }}" required autofocus>
+                                        <option value=1 >Admin</option> 
+                                        <option value=2 selected>Estudiante</option>
+                                       
+                                </select>
+                                @if ($errors->has('id_role'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('id_role') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+           <!-- <div class="form-group row" >
                <label for="lbl_equipo" class="col-md-4 col-form-label text-md-right" >Equipo</label>
                <div class="col-md-8">
                     <input type="text" name="equipo" id="lbl_equipo" class="form-control" >
                </div>
             </div>
+            -->
             <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
 

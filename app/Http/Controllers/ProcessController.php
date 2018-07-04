@@ -12,6 +12,8 @@ use App\EvaluationCriterion;
 use App\FailureDetection;
 use App\RecordFind;
 use App\FinalEvaluationCriterion;
+use App\Question;
+use App\Answer;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Auth;
 class ProcessController extends Controller
@@ -34,15 +36,17 @@ class ProcessController extends Controller
         return view('proceso',compact('id'));
     }
 
-    public function crearProceso()
+    public function crearProceso(Request $request)
     {
         //dd(Auth::user()->id);   
        /* Process::create([
             'user_id'=>2
         ]);   
         */
+       
         $proceso = new Process;
         $proceso->user_id = Auth::user()->id;
+        $proceso->nombre = $request->nombre_proceso;
         $proceso->save();
 
         $documetalAnalisis = new DocumentalAnalises;
@@ -111,9 +115,12 @@ class ProcessController extends Controller
         $document->elabora = $request->elabora;
         $document->autorizo = $request->autorizo;
         $document->save();
-
+        $analisis=$document;
+        //session()->flash('notificacion','Guardado correctamente');
         //return view('tools.documentalAnalisis.form',compact($document));
-        return redirect()->route('proceso', ['id' =>  $document->process_id]);
+        return redirect()->route('analisis', ['id' =>  $document->process_id])->with('notificacion','Guardado correctamente')->with('analisis',$analisis)->with('id',$id);
+        //return view('tools.documentalAnalisis.form', compact('analisis','id'))->with('notificacion','Guardado correctamente');
+        //return redirect('analisis/'.$id)->with('analisis','id'));
     }
 
     public function pdfDocumentalAnalisis($id)
@@ -157,9 +164,9 @@ class ProcessController extends Controller
         $evaluation->elaboro = $request->elaboro;
         $evaluation->autorizo = $request->autorizo;
         $evaluation->save();
-
-        return redirect()->route('proceso', ['id' =>  $evaluation->process_id]);
-
+        $criterios = $evaluation;
+        //return redirect()->route('proceso', ['id' =>  $evaluation->process_id]);
+        return redirect()->route('evaluacion', ['id' =>  $evaluation->process_id])->with('notificacion','Guardado correctamente')->with('criterios',$evaluation)->with('id',$id);
     }
 
     public function pdfEvaluationCriteria($id)
@@ -201,7 +208,8 @@ class ProcessController extends Controller
         $deteccion->autorizo = $request->autorizo;
         $deteccion->save();
 
-        return redirect()->route('proceso', ['id' =>  $deteccion->process_id]);
+        //return redirect()->route('proceso', ['id' =>  $deteccion->process_id]);
+        return redirect()->route('deteccion', ['id' =>  $deteccion->process_id])->with('notificacion','Guardado correctamente')->with('deteccion',$deteccion)->with('id',$id);
 
     }
 
@@ -244,7 +252,8 @@ class ProcessController extends Controller
         $registro->elabora = $request->elabora;
         $registro->autorizo = $request->autorizo;
         $registro->save();
-        return redirect()->route('proceso', ['id' =>  $registro->process_id]);
+        //return redirect()->route('proceso', ['id' =>  $registro->process_id]);
+        return redirect()->route('registro', ['id' =>  $registro->process_id])->with('notificacion','Guardado correctamente')->with('registro',$registro)->with('id',$id);
 
     }
 
@@ -264,6 +273,7 @@ class ProcessController extends Controller
         $worknum = WorkProgramNum::where('work_programs_id',$work->id)->get();
         //dd($worknum);
         return view('tools.programWork.form', compact('work','worknum','id'));
+
     }
 
     public function createWorkProgram(Request $request)
@@ -290,16 +300,72 @@ class ProcessController extends Controller
         $work->reviso = $request->reviso;
         $work->autorizo = $request->autorizo;
         
-        for($i=0; $i<$max; $i++){
-            $worknum = new WorkProgramNum();
-            $worknum->work_programs_id = $work->id;
-            $worknum->actividad =  $request->actividad[$i];
-            $worknum->responsable =  $request->responsable_especifico[$i];
-            $worknum->save();
+        $nums = WorkProgramNum::where('work_programs_id',$work->id)->get();
+        $length = count($nums);
+        if( $max>$length ){
+            $dif=$max-$length;
+           
+            
+            for( $i=$length; $i<$max; $i++ ){
+                $worknum = new WorkProgramNum();
+                $worknum->work_programs_id = $work->id;
+                $worknum->actividad =  $request->actividad[$i];
+                $worknum->responsable =  $request->responsable_especifico[$i];
+                $worknum->save();
+            }
+
+        }
+
+        else if( $length>$max ){
+            $dif=$max-$length;
+           
+            $worknum = WorkProgramNum::where('work_programs_id',$work->id)->get();
+            for( $i=0; $i<$max; $i++ ){
+                
+                $worknum->work_programs_id = $work->id;
+                $worknum->actividad =  $request->actividad[$i];
+                $worknum->responsable =  $request->responsable_especifico[$i];
+                $worknum->save();
+            }
+
+        }
+
+        else if ( $length == 0 ){
+            for($i=0; $i<$max; $i++){
+                $worknum = new WorkProgramNum();
+                $worknum->work_programs_id = $work->id;
+                $worknum->actividad =  $request->actividad[$i];
+                $worknum->responsable =  $request->responsable_especifico[$i];
+                $worknum->save();
+            }
+        //dd(count($nums));
+        }
+        else if ( $length == $max ){
+            $worknum = WorkProgramNum::where('work_programs_id',$work->id)->get();
+           
+            //dd($worknum);
+            $i=0;
+            foreach( $worknum as $value )
+            {
+                $value->actividad = $request->actividad[$i];
+                $value->responsable =  $request->responsable_especifico[$i];
+                $value->save();
+                $i++;
+            }
+
+            /*for($i=0; $i<$max; $i++){
+                //$worknum->work_programs_id[$i] = $work->id;
+                $worknum->actividad[$i] =  $request->actividad[$i];
+                $worknum->responsable[$i] =  $request->responsable_especifico[$i];
+                $worknum->save();
+            }
+            */
         }
         $work->save();
         
-        return redirect()->route('workProgram', ['id' =>  $work->process_id]);
+       // return redirect()->route('workProgram', ['id' =>  $work->process_id]);
+        return redirect()->route('workProgram', ['id' =>  $work->process_id])->with('notificacion','Guardado correctamente')->with('work',$work)->with('id',$id)->with('worknum',$worknum);
+
     }
 
     public function pdfWork($id)
@@ -358,6 +424,10 @@ class ProcessController extends Controller
 
     }
 
+
+    public function answer(Request $request){
+        
+    }
     
     /**
      * Show the form for creating a new resource.

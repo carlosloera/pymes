@@ -10,6 +10,7 @@ class Process extends Model
 
     protected $fillable = [
         'id_user',
+        'nombre',
     ];
 
     public function documental_analises(){
@@ -38,5 +39,9 @@ class Process extends Model
     public function user()
     {
         return $this->belongsTo('App\User','user_id');
+    }
+
+    public function answer(){
+        return $this->hasMany('App\Answer','id_periods');
     }
 }

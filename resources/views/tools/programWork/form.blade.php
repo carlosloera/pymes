@@ -198,7 +198,7 @@
                 Guardar
             </button>
             <div class="col-md-3">
-                <button id="pdfwork" class="btn btn-danger" id="imprimir">pasar a pdf</button>
+                <button id="pdfwork" type="button" class="btn btn-danger" >pasar a pdf</button>
             </div>   
         </div>
 

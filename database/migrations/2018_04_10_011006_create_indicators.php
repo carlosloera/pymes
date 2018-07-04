@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProcessTable extends Migration
+class CreateIndicators extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateProcessTable extends Migration
      */
     public function up()
     {
-        Schema::create('processes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->longText('nombre');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        Schema::create('indicators', function (Blueprint $table) {
+            $table->increments('id_Indicator');
+            $table->integer('id_category');
+            $table->text('description');
+            $table->enum('type',['Quantitative','Qualitative']);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateProcessTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('processes');
+        Schema::dropIfExists('indicators');
     }
 }

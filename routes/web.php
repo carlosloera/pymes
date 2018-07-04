@@ -11,8 +11,14 @@
 |
 */
 
-//ERIK--------------------------------------------------------------
+//INDICADORES
+Route::resource('/indicators','IndicatorController');
+Route::get('indicadores/{id}','IndicatorController@obtener')->name('indicadores');
+//ERIK PREGUNTAS--------------------------------------------------------------
 Route::resource('/questions','questionController');
+
+Route::get('cuestionario/{id}','questionController@obtener')->name('cuestionario');
+Route::post('guardar','answerController@store')->name('guardar');
 //Route::get('/questions','questionController@index')->name('questions');
 //Route::get('/questionsCrear','questionController@create')->name('questionsCreate');
 

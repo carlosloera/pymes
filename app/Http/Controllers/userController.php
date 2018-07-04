@@ -25,6 +25,7 @@ class userController extends Controller
 	}
 	public function store(Request $request)
 	{
+		//dd($request);
 		User::create($request->all());
 		return redirect('/Administrador');
 	}
@@ -38,15 +39,18 @@ class userController extends Controller
 	}
 	public function update(Request $request,$id)
 	{
+		//dd($request);
 		$user = User::findOrFail($id);
 		$user->nombre=$request->get('nombre');
 		$user->apellidoM=$request->get('apellidoM');
 		$user->apellidoP=$request->get('apellidoP');
 		$user->email=$request->get('email');
-		$user->password=$request->get('password');
-		$user->equipo=$request->get('equipo');
+		$user->id_role = $request->get('id_role');
+		
 		$user->update();
-		return redirect('/Administrador');
+		return  redirect()->route('users.edit',$id);
+		//dd($user);
+		//return view('edit',['user'=>user::findOrFail($id)]);
 	}
 	public function destroy($id)
 	{
