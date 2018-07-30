@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
+ 
     
     <link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/_all-skins.min.css') }}">
@@ -122,20 +122,87 @@
             </li>
             
             <li class="treeview">
-              <a href="{{ route('cuestionario',$id )}}">
+              <a href="">
                 <i class="fas fa-book"></i>
                 <span>Cuestionario</span>
-                 
+                <i class="fa fa-angle-left pull-right"></i>
+                <ul class="treeview-menu">
+                @php
+                  $categories = DB::table('categories')->get();
+                  $areas = DB::table('areas')->get();
+                @endphp
+                @foreach ($areas as $area)
+                  <li class="treeview">
+                    <a>{{$area->area}}
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                      @foreach ($categories as $category)
+                        @if($area->id_area == $category->id_area)
+                          <li>
+                            <a href="{{ route('cuestionario', ['id' => $id, 'id_category' => $category->id_category] )}}">{{$category->category}}</a>
+                          </li>
+                        @endif
+                      @endforeach
+                    </ul>
+                  </li>
+                @endforeach
+              </ul>
+
+                {{--
+<!--
+                 @foreach($categorias as $categoria)
+                         <ul class="treeview-menu">
+                            <li><a href="{{ route('cuestionario', ['id' => $id, 'id_category' => $categoria->id_category] )}}"><i class="far fa-dot-circle"></i> &nbsp; {{$categoria->category}}<i class="fa fa-angle-left pull-right"></i></a>
+                                @foreach($areas as $area)
+                                <ul>
+                                    <li><a><i class="far fa-dot-circle"></i> &nbsp; {{$area->area}}<i></i></a></li>
+                                </ul>
+                                @endforeach
+
+                            </li>
+                          
+                         </ul>
+                @endforeach
+                -->
+
+                --}}
               </a>
+
+                 
+
+
               
             </li>
             <li class="treeview"> 
-              <a href="{{ route('indicadores',$id )}}">
+              <a href="#">
                 <i class="fas fa-align-left"></i>
                 <span>Indicadores</span>
-                 
+                <i class="fa fa-angle-left pull-right"></i>
+
               </a>
-             
+              <ul class="treeview-menu">
+                @php
+                  $categories = DB::table('categories')->get();
+                  $areas = DB::table('areas')->get();
+                @endphp
+                @foreach ($areas as $area)
+                  <li class="treeview">
+                    <a>{{$area->area}}
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                      @foreach ($categories as $category)
+                        @if($area->id_area == $category->id_area)
+                          <li>
+                            <a href="{{ route('indicadores', ['id' => $id, 'id_category' => $category->id_category] )}}">{{$category->category}}</a>
+                          </li>
+                        @endif
+                      @endforeach
+                    </ul>
+                  </li>
+                @endforeach
+              </ul>
             </li>
             <li class="treeview">
               <a href="{{ route('procesos') }}">

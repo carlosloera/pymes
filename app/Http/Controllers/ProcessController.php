@@ -16,6 +16,8 @@ use App\Question;
 use App\Answer;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Auth;
+use App\Category;
+use App\Area;
 class ProcessController extends Controller
 {
     /**
@@ -33,7 +35,10 @@ class ProcessController extends Controller
 
     public function proceso($id)
     {
-        return view('proceso',compact('id'));
+        $categorias = Category::all();
+        $areas = Area::all();
+        return view('proceso',compact('id','categorias','areas'));
+        //return view('proceso',compact('id'));
     }
 
     public function crearProceso(Request $request)

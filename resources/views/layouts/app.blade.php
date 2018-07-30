@@ -54,9 +54,9 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <!--<li><a class="nav-link btn "  href="{{ route('login') }}" style="color:white; font-family: 'PT Sans Caption', sans-serif;;, sans-serif;   margin: 10px; border: solid 2px white;">Iniciar sesion</a></li>
+                            <li><a class="nav-link btn "  href="{{ route('login') }}" style="color:white; font-family: 'PT Sans Caption', sans-serif;;, sans-serif;   margin: 10px; border: solid 2px white;">Iniciar sesion</a></li>
                             <li><a class="nav-link btn "  href="{{ route('register') }}" style="color:white; font-family: 'PT Sans Caption', sans-serif;;', sans-serif;  margin: 10px; border: solid 2px white;">Registrarse</a></li>
-                            -->
+                           
                             @else
                             <li class="nav-item dropdown" style="color:white; ">
                                 

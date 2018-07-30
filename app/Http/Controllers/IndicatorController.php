@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
 use App\Area;
 use App\Indicator;
+use App\IndicatorAnswer;
 class IndicatorController extends Controller
 {
     /**
@@ -20,7 +21,13 @@ class IndicatorController extends Controller
             ->get();
         return view('indicators.indicators', compact('indicators'));
     }
-    
+    public function getCategories(){
+        return Area::join('categories', 'areas.id_area', '=', 'categories.id_area')
+            ->orderBy('areas.area')
+            ->orderBy('categories.category')
+            ->groupBy('areas.id_area', 'areas.area', 'categories.category', 'categories.id_category')
+            ->get();
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -105,22 +112,29 @@ class IndicatorController extends Controller
     public function destroy($id)
     {
         Indicator::findOrFail($id) -> delete();
+        IndicatorAnswer::where('id_indicator', '=', $id) -> delete();
         return redirect('indicators');
     }
 
-    public function getCategories(){
-        return Area::join('categories', 'areas.id_area', '=', 'categories.id_area')
-            ->orderBy('areas.area')
-            ->orderBy('categories.category')
-            ->groupBy('areas.id_area', 'areas.area', 'categories.category', 'categories.id_category')
-            ->get();
-    }
+    
 
 
     
 
-    public function obtener($id){
-        $indicators = Indicator::paginate(10);
+    public function obtener($id, $id_category){
+
+        $indicators = Indicator::where('id_category', '=', $id_category)->
+            orderBy('type', 'DESC')->orderBy('id_Indicator')->get();
+
+        $seccion = Area::join('categories', 'areas.id_area', '=', 'categories.id_area')
+            ->where('id_category', '=', $id_category)->first();
+
+        $indicatorsAnswers = IndicatorAnswer::join('indicators', 'indicators.id_Indicator', '=', 'indicators_answers.id_indicator')
+            ->where('indicators.id_category', '=', $id_category)
+            ->where('indicators_answers.id_process', '=', $id)->get();
+
+        return view('indicators.indicatorsAnswers',compact('indicators', 'seccion', 'indicatorsAnswers', 'id'));
+        /*$indicators = Indicator::paginate(10);
         //$closed = Closed_answer::all();
        // $answers = Answer::where('id_periods',$id)->get();
        
@@ -181,6 +195,8 @@ class IndicatorController extends Controller
             //dd($qualitative);
             //array_push($indicadores,$qualitative);
            // array_push($indicadores,$quantitative);
+
+        /*   
        }
        dd($ejemplo);
        $titulos = $indicadores->groupBy('id_category')->pluck('id_category');
@@ -191,7 +207,7 @@ class IndicatorController extends Controller
 
         return view('indicators.indicatorsAnswers',compact('indicadores','id','titulos'));
     
-
+       */
     }
 
 

@@ -1,6 +1,6 @@
 @extends('proceso')
 
-
+ 
 @section('herramientas')
 
 <div class="container">
@@ -54,11 +54,13 @@
                                 <div class="row">
                                     <div class="col-md-4">           
                                         <div class="form-group">
-                                                    <div class="form-check form-check-inline offset-md-3">
-                                                    <input class="form-check-input" type="checkbox" name="answer[{{$j}}]" id="inlineRadio.{{$i}}" value="{{$i}}" {{ ($valor == $i) ? 'checked' : '' }} >
-                                                    <label class="form-check-label" for="inlineRadio.{{$i}}"> &nbsp; {{ $alphas[$i].")  " }} &nbsp;  {{ $closed->closed_answer }} </label>
-                                                    {{--<h1>{{"option.".$i}}</h1>--}}
-                                        </div>
+                                        <div class="form-check form-check-inline offset-md-3">
+                                                   
+                                                    
+                                                   
+                                            <input class="form-check-input" type="checkbox" name="answer[{{$j}}]" id="inlineRadio.{{$i}}" value="{{$i}}" {{ ($valor == $i) ? 'checked' : '' }} >
+                                            <label class="form-check-label" for="inlineRadio.{{$i}}"> &nbsp; {{ $alphas[$i].")  " }} &nbsp;  {{ $closed->closed_answer }} </label>
+                                                  
                                     </div> 
                 
                                 </div>    
@@ -72,11 +74,11 @@
                                    
                                 <?php $i++; ?>
                             @endforeach
-                            {{--<input type="text" name="id_question[{{$j}}]" value="{{ $question->id_question }}">--}}
+                            <input type="text" name="id_question[{{$j}}]" value="{{ $question->id_question }}">
                         @endif
                         @if( $question->type == 'Open' )
                             <?php 
-                                $openA = \App\Answer::where('id_question',$question->id_question)->first();
+                                $openA = \App\Answer::where('id_question',$question->id_question)->where('id_periods',$id)->first();
                                 $valor;
                                 if( !$openA ){
                                     $valor = "";
@@ -87,12 +89,12 @@
                             ?>
                                {{--<h1>{{ $openA }}</h1>--}}
                                 <input type="text" name="answer[{{$j}}]" class="form-control col-md-6" placeholder="Ingresar la respuesta" value="{{ $valor }}">
-                                {{--<input type="text" name="id_question[{{$j}}]" value="{{ $question->id_question}}">--}}
+                                <input type="text" name="id_question[{{$j}}]" value="{{ $question->id_question}}">
                               
                         @endif
                         @if( $question->type == 'Binary' )
                             <?php 
-                                $binary = \App\Answer::where('id_question',$question->id_question)->first();
+                                $binary = \App\Answer::where('id_question',$question->id_question)->where('id_periods',$id)->first();
                                  $valor;
                                 if( !$binary ){
                                     $valor = "";
@@ -111,7 +113,7 @@
                                     <label class="form-check-label" for="inlineRadio2">No</label>
                                 </div>
                             </div>  
-                            {{--<input type="text" name="id_question[{{$j}}]" value="{{ $question->id_question }}">  --}}
+                            <input type="text" name="id_question[{{$j}}]" value="{{ $question->id_question }}"> 
                         @endif
                     </div>
                 </div>   
@@ -128,7 +130,7 @@
         </div>
     </div>
     </form>
-    {{ $questions->links() }}
+   
 </div>
 
 

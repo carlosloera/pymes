@@ -198,9 +198,11 @@ class questionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function obtener($id){
-        $questions = Question::paginate(2);
+ 
+    public function obtener($id,$id_category){
+        //dd($id_category);
+        $questions = Question::where('id_category',$id_category)->get();
+      
         $closed = Closed_answer::all();
        // $answers = Answer::where('id_periods',$id)->get();
         return view('questions.cuestionario',compact('questions','id'));

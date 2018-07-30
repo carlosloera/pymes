@@ -10,14 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+ 
 //INDICADORES
 Route::resource('/indicators','IndicatorController');
-Route::get('indicadores/{id}','IndicatorController@obtener')->name('indicadores');
+Route::get('indicadores/{id}/{id_category}','IndicatorController@obtener')->name('indicadores');
 //ERIK PREGUNTAS--------------------------------------------------------------
 Route::resource('/questions','questionController');
+Route::post('saveIndicatorAnswer', 'indicatorAnswerController@store')->name('saveIndicatorsAnswers');
 
-Route::get('cuestionario/{id}','questionController@obtener')->name('cuestionario');
+Route::get('cuestionario/{id}/{id_category}','questionController@obtener')->name('cuestionario');
 Route::post('guardar','answerController@store')->name('guardar');
 //Route::get('/questions','questionController@index')->name('questions');
 //Route::get('/questionsCrear','questionController@create')->name('questionsCreate');
