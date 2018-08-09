@@ -1,6 +1,16 @@
 @extends('layouts.app')
 @section('content')
+@if( Session::has('error') )
+        <div  class="alert alert-danger alert-dismissible fade show flash">
+            {{ Session::get('error') }}
+
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>               
+        </div>
+    @endif
 <div class="container" style="text-align:center">
+    
    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 offset-md-3">
       <div class="card card-default">
       <div class="card-header bg-dark" style="color:white; text-align:center;">Registro</div>
@@ -11,28 +21,28 @@
             <div class="form-group row" >
                <label for="lbl_nombre" class="col-md-4 col-form-label text-md-right" >Nombre</label>
                <div class="col-md-8">
-                    <input type="text" name="nombre" id="lbl_nombre" class="form-control">
+                    <input type="text" name="nombre" id="lbl_nombre" class="form-control" required>
                </div>
             </div>
             
             <div class="form-group row" >
                <label for="lbl_apellidoP" class="col-md-4 col-form-label text-md-right" >Apellido paterno</label>
                <div class="col-md-8">
-                    <input type="text" name="apellidoP" id="lbl_apellidoP" class="form-control">
+                    <input type="text" name="apellidoP" id="lbl_apellidoP" class="form-control" required>
                </div>
             </div>
            
             <div class="form-group row" >
                <label for="lbl_apellidoM" class="col-md-4 col-form-label text-md-right" >Apellido materno</label>
                <div class="col-md-8">
-                    <input type="text" name="apellidoM" id="lbl_apellidoM" class="form-control">
+                    <input type="text" name="apellidoM" id="lbl_apellidoM" class="form-control" required>
                </div>
             </div>
            
             <div class="form-group row" >
                <label for="lbl_email" class="col-md-4 col-form-label text-md-right" >Email</label>
                <div class="col-md-8">
-                    <input type="text" name="email" id="lbl_email" class="form-control">
+                    <input type="email" name="email" id="lbl_email" class="form-control" required>
                </div>
             </div>
             
@@ -74,7 +84,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
 
                         <div class="col-md-8">
-                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required >
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">

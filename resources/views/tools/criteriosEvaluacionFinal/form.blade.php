@@ -16,7 +16,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"> Fecha:</div>
                     </div>
-                        <input type="date" name="fecha" value="{{ $evaluacion->fecha }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                        <input type="date" name="fecha" value="{{ $evaluacion->fecha }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
             </div> 
 
@@ -38,7 +38,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"> Pagina:</div>
                     </div>
-                        <input type="number" name="pagina"  value="{{ $evaluacion->pagina }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                        <input type="number" name="pagina"  value="{{ $evaluacion->pagina }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
             </div> 
 
@@ -49,7 +49,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"> De:</div>
                     </div>
-                        <input type="number" name="pagina_de" value="{{ $evaluacion->pagina_de }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                        <input type="number" name="pagina_de" value="{{ $evaluacion->pagina_de }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
             </div> 
             
@@ -110,8 +110,8 @@
                         1.12 Horizontes
                     </th>
 
-                    <td colspan="1"> <input id="planeacion1" name="establecidos_planeacion" value="{{ $evaluacion->establecidos_planeacion }}" style="margin-top: 140px; " class="form-control justify-content-center " type="text"> </td>
-                    <td colspan="1"> <input id="planeacion2" name="obtenidos_planeacion" value="{{ $evaluacion->obtenidos_planeacion }}" style="margin-top: 140px; " class="form-control justify-content-center" type="text"> </td>
+                    <td colspan="1"> <input id="planeacion1" name="establecidos_planeacion" value="{{ $evaluacion->establecidos_planeacion }}" style="margin-top: 140px; " class="form-control justify-content-center " type="text" required> </td>
+                    <td colspan="1"> <input id="planeacion2" name="obtenidos_planeacion" value="{{ $evaluacion->obtenidos_planeacion }}" style="margin-top: 140px; " class="form-control justify-content-center" type="text" required> </td>
                     <th>
                         <input type="text" style="margin-top: 140px;" class="form-control" readonly id="porcentaje_planeacion">
                     </th>
@@ -135,8 +135,8 @@
                         <br>
                         2.7 Instrumentos técnicos de apoyo
                     </th>
-                    <td colspan="1"> <input id="organizacion1" name="establecidos_organizacion" value="{{ $evaluacion->establecidos_organizacion }}" style="margin-top: 76px;" class="form-control justify-content-center" type="text"> </td>
-                    <td colspan="1"> <input id="organizacion2" name="obtenidos_organizacion" value="{{ $evaluacion->obtenidos_organizacion }}" style="margin-top: 76px;" class="form-control justify-content-center" type="text"> </td>
+                    <td colspan="1"> <input id="organizacion1" name="establecidos_organizacion" value="{{ $evaluacion->establecidos_organizacion }}" style="margin-top: 76px;" class="form-control justify-content-center" type="text" required> </td>
+                    <td colspan="1"> <input id="organizacion2" name="obtenidos_organizacion" value="{{ $evaluacion->obtenidos_organizacion }}" style="margin-top: 76px;" class="form-control justify-content-center" type="text" required> </td>
                     <th>
                         <input type="text" style="margin-top: 76px;" class="form-control" readonly id="porcentaje_organizacion">
                     </th>
@@ -163,8 +163,8 @@
                             <br>
                             3.8 Creatividad e innovación
                         </th>
-                        <td colspan="1"> <input id="direccion1" name="establecidos_direccion" value="{{ $evaluacion->establecidos_direccion }}" style="margin-top: 84px;" class="form-control justify-content-center" type="text"> </td>
-                        <td colspan="1"> <input id="direccion2" name="obtenidos_direccion" value="{{ $evaluacion->obtenidos_direccion }}" style="margin-top: 84px;" class="form-control justify-content-center" type="text"> </td>
+                        <td colspan="1"> <input id="direccion1" name="establecidos_direccion" value="{{ $evaluacion->establecidos_direccion }}" style="margin-top: 84px;" class="form-control justify-content-center" type="text" required> </td>
+                        <td colspan="1"> <input id="direccion2" name="obtenidos_direccion" value="{{ $evaluacion->obtenidos_direccion }}" style="margin-top: 84px;" class="form-control justify-content-center" type="text" required> </td>
                         <th>
                             <input type="text" style="margin-top: 84px;" class="form-control" readonly id="porcentaje_direccion">
                         </th>
@@ -188,8 +188,8 @@
                         <br>
                         4.7 Calidad
                     </th>
-                    <td colspan="1"> <input id="control1" name="establecidos_control" value="{{ $evaluacion->establecidos_control }}" style="margin-top: 81px;" class="form-control justify-content-center" type="text"> </td>
-                    <td colspan="1"> <input id="control2" name="obtenidos_control" value="{{ $evaluacion->obtenidos_control }}" style="margin-top: 81px;" class="form-control justify-content-center" type="text"> </td>
+                    <td colspan="1"> <input id="control1" name="establecidos_control" value="{{ $evaluacion->establecidos_control }}" style="margin-top: 81px;" class="form-control justify-content-center" type="text" required> </td>
+                    <td colspan="1"> <input id="control2" name="obtenidos_control" value="{{ $evaluacion->obtenidos_control }}" style="margin-top: 81px;" class="form-control justify-content-center" type="text" required> </td>
                     <th> <input type="text" style="margin-top: 81px;" class="form-control" readonly id="porcentaje_control"> </th>
                 </tr>
                 
@@ -202,7 +202,7 @@
                                 </button>
                 <div class="col-md-3">
                     <!--<a class="btn btn-success"  href="{{ route('pdfEvaluacionFinal', $evaluacion->process_id) }}">Imprimir</a> -->
-                    <button id="pdf" class="btn btn-danger" >pasar a pdf</button>
+                    <button id="pdf" class="btn btn-danger" >Pasar a pdf</button>
                 </div>    
             </div>
 

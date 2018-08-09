@@ -19,7 +19,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"> Area:</div>
                     </div>
-                    <input type="text" name="area" value="{{ $analisis->area }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="text" name="area" value="{{ $analisis->area }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"> Fecha:</div>
                 </div>
-                <input type="date" name="fecha" value="{{ $analisis->fecha }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                <input type="date" name="fecha" value="{{ $analisis->fecha }}" class="form-control" id="inlineFormInputGroupUsername2" required>
             </div>
 
             <div class="row">
@@ -36,14 +36,14 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"> Numero de hoja:</div>
                     </div>
-                    <input type="number" name="num_hoja" value="{{ $analisis->num_hoja }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="number" name="num_hoja" value="{{ $analisis->num_hoja }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
 
                 <div class="col input-group mb-2 ">
                     <div class="input-group-prepend">
                         <div class="input-group-text"> De:</div>
                     </div>
-                    <input type="number" name="num_hoja_de" value="{{ $analisis->num_hoja_de }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="number" name="num_hoja_de" value="{{ $analisis->num_hoja_de }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
             </div>
 
@@ -52,14 +52,14 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"> Responsable:</div>
                 </div>
-                <input type="text" name="responsable" value="{{ $analisis->responsable }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                <input type="text" name="responsable" value="{{ $analisis->responsable }}" class="form-control" id="inlineFormInputGroupUsername2" required>
             </div>
 
             <div class="input-group mb-2 mr-sm-2">
                 <div class="input-group-prepend">
                     <div class="input-group-text"> Funcion:</div>
                 </div>
-                <input type="text" name="funcion" value="{{ $analisis->funcion }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                <input type="text" name="funcion" value="{{ $analisis->funcion }}" class="form-control" id="inlineFormInputGroupUsername2" required>
             </div>
         </div>
         
@@ -70,7 +70,7 @@
                     <br>
                     <label for="validationDefault01">Documento</label>
                     <textarea type="text" name="documento" value="{{ $analisis->documento }}" class="form-control" id="textarea" contentEditable="true" 
-                    placeholder="Especifi caciones del nombre del documento, datos básicos,contenido, responsable de su elaboración y fuente de consulta."  required rows="15">{{ $analisis->documento }}</textarea>
+                    placeholder="Especificaciones del nombre del documento, datos básicos,contenido, responsable de su elaboración y fuente de consulta."  required rows="15">{{ $analisis->documento }}</textarea>
                 </div>
                 <div class="col-md-4 mb-3">
                     <br>
@@ -98,7 +98,7 @@
                     <div class="input-group-prepend">
                     <div class="input-group-text"> Observaciones:</div>
                     </div>
-                    <input type="text" class="form-control" name="observaciones" value="{{ $analisis->observaciones }}" id="inlineFormInputGroupUsername2" >
+                    <input type="text" class="form-control" name="observaciones" value="{{ $analisis->observaciones }}" id="inlineFormInputGroupUsername2" required>
         </div>
 
     </div>  
@@ -108,7 +108,7 @@
                             <div class="input-group-prepend">
                             <div class="input-group-text"> Elaboro:</div>
                             </div>
-                            <input type="text" name="elabora" class="form-control" value="{{ $analisis->elabora }}" id="inlineFormInputGroupUsername2" >
+                            <input type="text" name="elabora" class="form-control" value="{{ $analisis->elabora }}" id="inlineFormInputGroupUsername2" required>
                         </div>
                     </div>
 
@@ -119,7 +119,7 @@
                             <div class="input-group-prepend">
                             <div class="input-group-text"> Autorizo:</div>
                             </div>
-                            <input type="text" class="form-control" id="inlineFormInputGroupUsername2" name="autorizo" value="{{ $analisis->autorizo }}">
+                            <input type="text" class="form-control" id="inlineFormInputGroupUsername2" name="autorizo" value="{{ $analisis->autorizo }}" required>
                         </div>
                     </div>
                
@@ -132,7 +132,7 @@
                                     </button>
                     <div class="col-md-3">
                         <!--<a class="btn btn-success" href="{{ route('pdfAnalisis', $analisis->process_id) }}">Imprimir</a>-->
-                        <button id="pdf" class="btn btn-danger" >pasar a pdf</button>
+                        <button id="pdf" class="btn btn-danger" >Pasar a pdf</button>
                     </div>    
             </div>
            

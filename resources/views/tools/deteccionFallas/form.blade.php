@@ -17,14 +17,14 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"> Area Evaluada:</div>
                     </div>
-                    <input type="text" name="area" value="{{ $deteccion->area }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="text" name="area" value="{{ $deteccion->area }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
 
                 <div class="input-group mb-2 mr-sm-2">
                     <div class="input-group-prepend">
                         <div class="input-group-text"> Etapa o Elemento:</div>
                     </div>
-                    <input type="text" name="etapa_elemento" value="{{ $deteccion->etapa_elemento }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="text" name="etapa_elemento" value="{{ $deteccion->etapa_elemento }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
 
             </div>
@@ -35,7 +35,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"> Fecha:</div>
                 </div>
-                <input type="date" name="fecha" value="{{ $deteccion->fecha }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                <input type="date" name="fecha" value="{{ $deteccion->fecha }}" class="form-control" id="inlineFormInputGroupUsername2" required>
             </div>
 
 
@@ -44,14 +44,14 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text">Pagina:</div>
                     </div>
-                    <input type="number" name="pagina1" value="{{ $deteccion->pagina1 }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="number" name="pagina1" value="{{ $deteccion->pagina1 }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
 
                 <div class="col input-group mb-2  ">
                     <div class="input-group-prepend">
                         <div class="input-group-text"> De:</div>
                     </div>
-                    <input type="number" name="pagina1_de" value="{{ $deteccion->pagina1_de }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="number" name="pagina1_de" value="{{ $deteccion->pagina1_de }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"> Sustituye A:</div>
                 </div>
-                <input type="text" name="sustituye_a" value="{{ $deteccion->sustituye_a }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                <input type="text" name="sustituye_a" value="{{ $deteccion->sustituye_a }}" class="form-control" id="inlineFormInputGroupUsername2" required>
             </div>
 
 
@@ -68,14 +68,14 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text">Pagina:</div>
                     </div>
-                    <input type="number" name="pagina2" value="{{ $deteccion->pagina2 }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="number" name="pagina2" value="{{ $deteccion->pagina2 }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
 
                 <div class="col input-group mb-2  ">
                     <div class="input-group-prepend">
                         <div class="input-group-text"> De:</div>
                     </div>
-                    <input type="number" name="pagina2_de" value="{{ $deteccion->pagina2_de }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="number" name="pagina2_de" value="{{ $deteccion->pagina2_de }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
             </div>
 
@@ -84,7 +84,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"> fecha:</div>
                 </div>
-                <input type="date" name="fecha2" value="{{ $deteccion->fecha2 }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                <input type="date" name="fecha2" value="{{ $deteccion->fecha2 }}" class="form-control" id="inlineFormInputGroupUsername2" required>
             </div>
         </div>
 
@@ -95,7 +95,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"> Numero:</div>
                     </div>
-                    <input type="number" name="numero" value="{{ $deteccion->numero }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="number" name="numero" value="{{ $deteccion->numero }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
         </div>
 
@@ -134,7 +134,7 @@
                     <div class="input-group-prepend">
                     <div class="input-group-text"> Observaciones:</div>
                     </div>
-                    <input type="text" name="observaciones" value="{{ $deteccion->observaciones }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="text" name="observaciones" value="{{ $deteccion->observaciones }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
         </div>  
             <div class="form-row col-md-12">
@@ -143,7 +143,7 @@
                             <div class="input-group-prepend">
                             <div class="input-group-text"> Elaboró:</div>
                             </div>
-                            <input type="text" name="elaboro" value="{{ $deteccion->elaboro }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                            <input type="text" name="elaboro" value="{{ $deteccion->elaboro }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                         </div>
                     </div>
 
@@ -152,7 +152,7 @@
                             <div class="input-group-prepend">
                             <div class="input-group-text"> Autorizó:</div>
                             </div>
-                            <input type="text" name="autorizo" value="{{ $deteccion->autorizo }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                            <input type="text" name="autorizo" value="{{ $deteccion->autorizo }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                         </div>
                     </div>
 
@@ -166,7 +166,7 @@
                                 </button>
                 <div class="col-md-3">
                     <!--<a class="btn btn-success" href="{{ route('pdfDeteccion', $deteccion->process_id) }}">Imprimir</a>-->
-                    <button id="pdf" class="btn btn-danger" >pasar a pdf</button>
+                    <button id="pdf" class="btn btn-danger" >Pasar a pdf</button>
                 </div>    
             </div>
 

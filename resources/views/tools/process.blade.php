@@ -11,11 +11,11 @@
                     <div class="card-body offset-md-2">
                         @if ( Auth::user()->id_role == "2" )
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-xs-12">
                                 <button class="btn btn-outline-danger">Iniciar Nuevo Proceso</button>
                             </div>
-                            <div class="col-md-5">
-                                <input type="text" class="form-control" name="nombre_proceso" placeholder="Ingresa el nombre del proceso">
+                            <div class="col-md-5 col-xs-12">
+                                <input type="text" class="form-control" name="nombre_proceso" placeholder="Ingresa el nombre del proceso" required>
                             </div>  
                         </div>
                         
@@ -38,17 +38,17 @@
         <div class="card-header">
             <h3>Proceso creados</h3>
         </div>
-        <div class="card-body">
+        <div class="card-body" style="overflow:scroll; height:400px;">
         <br>
             @foreach($procesos as $proceso)
 
-                                        <div class="row ">
+                                        <div class="row  justify-content-sm-center">
                                             
-                                            <div class="col-md-3">
+                                            <div class="col-md-3 col-xs-12 ">
                                                 <h5> {{ $proceso->nombre }}</h5>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 col-xs-12 ">
                                             {{ csrf_field() }}
                                                 
                                                 
@@ -64,7 +64,7 @@
             @endforeach
         </div>
     </div>
-    <table class="table table-hover">
+    <!--<table class="table table-hover">
         <thead class="thead-light">
             <tr>
             <th scope="col">#</th>
@@ -84,6 +84,7 @@
             @endforeach    
         </tbody>
     </table>
+    -->
     @endif
 </div>
 @endsection

@@ -2,7 +2,15 @@
 @section('content')
 <div class="container">
    <!-- Modal -->
+   @if( Session::has('status') )
+        <div  class="alert alert-success alert-dismissible fade show flash">
+            {{ Session::get('status') }}
 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>               
+        </div>
+    @endif
    <h2>Registros</h2>
    <table class="table table-hover">
       <thead class="thead-dark">
@@ -11,7 +19,7 @@
             <th>Apellido paterno</th>
             <th>Apellido materno</th>
             <th>Correo</th>
-            <th>Equipo</th>
+            
             <th></th>
          </tr>
       </thead>
@@ -21,11 +29,11 @@
             <td>{{$item->apellidoP}}</td>
             <td>{{$item->apellidoM}}</td>
             <td>{{$item->email}}</td>
-            <td>{{$item->equipo}}</td>
+            
             <td>
                <div class="d-inline">
-                  <a class="btn btn-outline-dark" href="{{route('users.show',$item->id)}}" disabled style="pointer-events: none;
-  cursor: default;">Ver</a>
+                 <!-- <a class="btn btn-outline-dark" href="{{route('users.show',$item->id)}}" disabled style="pointer-events: none;
+  cursor: default;">Ver</a>-->
                </div>
                <div class="d-inline">
                   <a  class="btn btn-outline-dark" href="{{route('users.edit',$item->id)}}">Editar  </a>

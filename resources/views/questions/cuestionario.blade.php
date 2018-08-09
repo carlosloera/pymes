@@ -54,27 +54,29 @@
                                 <div class="row">
                                     <div class="col-md-4">           
                                         <div class="form-group">
-                                        <div class="form-check form-check-inline offset-md-3">
+                                         <div class="form-check form-check-inline offset-md-3">
                                                    
                                                     
                                                    
                                             <input class="form-check-input" type="checkbox" name="answer[{{$j}}]" id="inlineRadio.{{$i}}" value="{{$i}}" {{ ($valor == $i) ? 'checked' : '' }} >
                                             <label class="form-check-label" for="inlineRadio.{{$i}}"> &nbsp; {{ $alphas[$i].")  " }} &nbsp;  {{ $closed->closed_answer }} </label>
                                                   
-                                    </div> 
+                                         </div> 
                 
-                                </div>    
-                                            
+                                        </div>    
+                                    </div>        
                                          <!--   <div class="col-md-2 offset-1">
                                             <input class="form-check-input offset-md-4" type="checkbox" id="gridCheck">
                                             &nbsp; {{ $alphas[$i].")  " }} &nbsp;  {{ $closed->closed_answer }} 
                                            -->
                                             
-                                        </div>
+                                </div>
                                    
                                 <?php $i++; ?>
                             @endforeach
-                            <input type="text" name="id_question[{{$j}}]" value="{{ $question->id_question }}">
+                            <br>
+                                <textarea class="form-control col-md-6" placeholder="Comentarios" ></textarea>
+                            <input type="hidden" name="id_question[{{$j}}]" value="{{ $question->id_question }}">
                         @endif
                         @if( $question->type == 'Open' )
                             <?php 
@@ -89,7 +91,9 @@
                             ?>
                                {{--<h1>{{ $openA }}</h1>--}}
                                 <input type="text" name="answer[{{$j}}]" class="form-control col-md-6" placeholder="Ingresar la respuesta" value="{{ $valor }}">
-                                <input type="text" name="id_question[{{$j}}]" value="{{ $question->id_question}}">
+                                <input type="hidden" name="id_question[{{$j}}]" value="{{ $question->id_question}}">
+                                <br>
+                                <textarea class="form-control col-md-6" placeholder="Comentarios" ></textarea>
                               
                         @endif
                         @if( $question->type == 'Binary' )
@@ -113,7 +117,9 @@
                                     <label class="form-check-label" for="inlineRadio2">No</label>
                                 </div>
                             </div>  
-                            <input type="text" name="id_question[{{$j}}]" value="{{ $question->id_question }}"> 
+                            <input type="hidden" name="id_question[{{$j}}]" value="{{ $question->id_question }}"> 
+                            <br>
+                                <textarea class="form-control col-md-6" placeholder="Comentarios" ></textarea>
                         @endif
                     </div>
                 </div>   
@@ -122,7 +128,8 @@
         <?php $j++ ?>
     @endforeach
     <input type="hidden" value="{{ $id }}" name="process_id">
-    <input type="checkbox"  name="id_questions[]">
+    <!--<input type="checkbox"  name="id_questions[]">-->
+    <br>
     <div class="row">
         <div class="offset-md-10">
 

@@ -24,10 +24,15 @@ class userController extends Controller
 		return view('createUsers');
 	}
 	public function store(Request $request)
-	{
+	{	
+		$exist = User::where('email',$request->email)->first();
+		if( $exist ){
+			return back()->with('error', 'El correo '. $exist->email .' ha sido registrado anteriormente elige otro');	
+		}
 		//dd($request);
 		User::create($request->all());
-		return redirect('/Administrador');
+		
+		return redirect('/Administrador')->with('status', 'Guardado Correctamente');
 	}
 	public function show($id)
 	{

@@ -10,19 +10,19 @@
          {{ method_field('PUT') }}
             <div>
                <label for="lbl_nombre">Nombre </label>
-               <input type="text" name="nombre" id="lbl_nombre" class="form-control" value="{{ $user->nombre }}">
+               <input type="text" name="nombre" id="lbl_nombre" class="form-control" value="{{ $user->nombre }}" required>
             </div>
             <div>
                <label for="lbl_apellidoP">Apellido paterno</label>
-               <input type="text" name="apellidoP" id="lbl_apellidoP" value="{{ $user->apellidoP }}" class="form-control">
+               <input type="text" name="apellidoP" id="lbl_apellidoP" value="{{ $user->apellidoP }}" class="form-control" required>
             </div>
             <div>
                <label for="lbl_apellidoM">Apellido materno</label>
-               <input type="text" name="apellidoM" id="lbl_apellidoM" value="{{ $user->apellidoM }}" class="form-control">
+               <input type="text" name="apellidoM" id="lbl_apellidoM" value="{{ $user->apellidoM }}" class="form-control" required>
             </div>
             <div>
                <label for="lbl_email">Email</label>
-               <input type="text" name="email" id="lbl_email" class="form-control" value="{{ $user->email }}">
+               <input type="text" name="email" id="lbl_email" class="form-control" value="{{ $user->email }}" required>
             </div>
             <div>
                <label for="lbl_rol">Rol</label>

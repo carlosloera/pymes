@@ -17,14 +17,14 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"> Area Evaluada:</div>
                     </div>
-                    <input type="text" name="area" value="{{ $registro->area }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="text" name="area" value="{{ $registro->area }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
 
                 <div class="input-group mb-2 mr-sm-2">
                     <div class="input-group-prepend">
                         <div class="input-group-text"> Etapa o Elemento:</div>
                     </div>
-                    <input type="text" name="etapa_elemento" value="{{ $registro->etapa_elemento }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="text" name="etapa_elemento" value="{{ $registro->etapa_elemento }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
 
             </div>
@@ -35,7 +35,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"> Fecha:</div>
                 </div>
-                <input type="date" name="fecha" value="{{ $registro->fecha }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                <input type="date" name="fecha" value="{{ $registro->fecha }}" class="form-control" id="inlineFormInputGroupUsername2" required>
             </div>
 
 
@@ -44,14 +44,14 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text">Pagina:</div>
                     </div>
-                    <input type="number" name="pagina1" value="{{ $registro->pagina1 }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="number" name="pagina1" value="{{ $registro->pagina1 }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
 
                 <div class="col input-group mb-2  ">
                     <div class="input-group-prepend">
                         <div class="input-group-text"> De:</div>
                     </div>
-                    <input type="number" name="pagina1_de" value="{{ $registro->pagina1_de }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="number" name="pagina1_de" value="{{ $registro->pagina1_de }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"> Sustituye A:</div>
                 </div>
-                <input type="text" name="sustituye_a" value="{{ $registro->sustituye_a }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                <input type="text" name="sustituye_a" value="{{ $registro->sustituye_a }}" class="form-control" id="inlineFormInputGroupUsername2" required>
             </div>
 
 
@@ -68,14 +68,14 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text">Pagina:</div>
                     </div>
-                    <input type="number" name="pagina2" value="{{ $registro->pagina2 }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="number" name="pagina2" value="{{ $registro->pagina2 }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
 
                 <div class="col input-group mb-2  ">
                     <div class="input-group-prepend">
                         <div class="input-group-text"> De:</div>
                     </div>
-                    <input type="number" name="pagina2_de" value="{{ $registro->pagina2_de }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="number" name="pagina2_de" value="{{ $registro->pagina2_de }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
             </div>
 
@@ -84,7 +84,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text"> fecha:</div>
                 </div>
-                <input type="date" name="fecha2" value="{{ $registro->fecha2 }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                <input type="date" name="fecha2" value="{{ $registro->fecha2 }}" class="form-control" id="inlineFormInputGroupUsername2" required>
             </div>
         </div>
 
@@ -95,7 +95,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"> Numero:</div>
                     </div>
-                    <input type="number" name="numero" value="{{ $registro->numero }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                    <input type="number" name="numero" value="{{ $registro->numero }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                 </div>
         </div>
 
@@ -142,7 +142,7 @@
                     <div class="input-group-prepend">
                     <div class="input-group-text"> Observaciones:</div>
                     </div>
-                    <input type="text" class="form-control" id="inlineFormInputGroupUsername2" name="observaciones" value="{{ $registro->observaciones }}"  >
+                    <input type="text" class="form-control" id="inlineFormInputGroupUsername2" name="observaciones" value="{{ $registro->observaciones }}"  required>
                 </div>
         </div>  
             <div class="form-row col-md-12">
@@ -151,7 +151,7 @@
                             <div class="input-group-prepend">
                             <div class="input-group-text"> Elaboro:</div>
                             </div>
-                            <input type="text" name="elabora" value="{{ $registro->elabora }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                            <input type="text" name="elabora" value="{{ $registro->elabora }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                         </div>
                     </div>
 
@@ -160,7 +160,7 @@
                             <div class="input-group-prepend">
                             <div class="input-group-text"> Autorizo:</div>
                             </div>
-                            <input type="text" name="autorizo" value="{{ $registro->autorizo }}" class="form-control" id="inlineFormInputGroupUsername2" >
+                            <input type="text" name="autorizo" value="{{ $registro->autorizo }}" class="form-control" id="inlineFormInputGroupUsername2" required>
                         </div>
                     </div>
                     <input type="hidden" value="{{ $registro->process_id }}" name="process_id">
@@ -173,7 +173,7 @@
                                 </button>
                 <div class="col-md-3">
                     <!--<a class="btn btn-success" href="{{ route('pdfRegistro', $registro->process_id) }}">Imprimir</a>-->
-                    <button id="pdf" class="btn btn-danger" >pasar a pdf</button>
+                    <button id="pdf" class="btn btn-danger" >Pasar a pdf</button>
                 </div>    
             </div>
 

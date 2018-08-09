@@ -5,8 +5,8 @@
 	    <form id="saveIndicators" method="POST" action="{{ route('indicators.store') }}">
 	    	{{ csrf_field() }}
 	    	
-			<div class="card border-info">
-				<div class="card-header bg-info text-white"><b>Insertar Indicador</b></div>
+			<div class="card border-dark">
+				<div class="card-header bg-dark text-white"><b>Insertar Indicador</b></div>
 				<div class="card-body col-md-10 offset-md-1">
 					<div class="row form-group">
 						<label for="id_category">Categoría</label>
@@ -28,7 +28,7 @@
 				    </div>
 
 					<div class="row text-center form-group">
-						<input type="button" id="addIndicator" class="btn btn-secondary btn-block mx-auto" value="Agregar indicadores a la categoría">
+						<input type="button" id="addIndicator" class="btn btn-dark btn-block mx-auto" value="Agregar indicadores a la categoría">
 					</div>
 
 					<div class="row form-group" id="IndicatorsList">
@@ -49,8 +49,8 @@
 					</div>
 
                     <div class="row form-group">
-						<input type="submit" class="btn btn-info btn-block mx-auto" value="Guardar">
-						<input type="button" class="btn btn-info btn-block mx-auto" value="Cancelar" onClick="location.href='../indicators'">
+						<input type="submit" class="btn btn-danger btn-block mx-auto" value="Guardar">
+						<input type="button" class="btn btn-danger btn-block mx-auto" value="Cancelar" onClick="location.href='../indicators'">
 					</div>
 				</div>
 			</div>
