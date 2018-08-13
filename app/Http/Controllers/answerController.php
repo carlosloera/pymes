@@ -88,13 +88,15 @@ class answerController extends Controller
                 }
             }   
             */ 
+           // dd($request);
             $size = sizeof($request->answer);
              for($i=0; $i<$size; $i++){
                 $exist;
                 $exist = Answer::where('id_question',$request->id_question[$i])->first();
                 //dd($exist);
                 if($exist){
-                    $exist->answer = $request->answer[$i];   
+                    $exist->answer = $request->answer[$i]; 
+                    $exist->comment = $request->comment[$i];   
                     //dd($exist);
                     $exist->save();
                 }
@@ -102,6 +104,7 @@ class answerController extends Controller
                     //dd("no");
                     $answer = new Answer;
                     $answer->answer = $request->answer[$i];
+                    $answer->comment = $request->comment[$i];
                     $answer->id_question = $request->id_question[$i];
                     $answer->id_periods = $request->process_id;
                     $answer->save();

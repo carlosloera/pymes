@@ -259,7 +259,7 @@
                      
 
 		                          @yield('herramientas')
-                                  
+                              
                               <h3></h3>
 		                          <!--Fin Contenido-->
                            </div>
@@ -287,11 +287,27 @@
     <script src="{{ asset('js/app.min.js') }}  "></script>
     
     <script type="text/javascript">
+            var modal = document.querySelector(".modal");
+            var trigger = document.querySelector(".trigger");
+            var closeButton = document.querySelector(".close-button");
+
+            function toggleModal() {
+                modal.classList.toggle("show-modal");
+            }
+
+            function windowOnClick(event) {
+                if (event.target === modal) {
+                    toggleModal();
+                }
+            }
+
       $(".alert.flash").fadeTo(2000,500).slideUp(500, function(){
           $(".alert.flash").slideUp(500);
       });
       
       $(document).ready(function(){
+
+        
           console.log("hola mundo");
                   $('#alert').hide();
 
@@ -327,10 +343,12 @@
                       
                   });
       });
+
+      
     </script>
 
     <script>
-
+       
         $("#pdf").click(function(){
             console.log("hjnhhjkjk");
             $('input[name=fecha]').prop('type', 'text');
@@ -352,7 +370,7 @@
                         var img =canvas.toDataURL("image/jpeg,1.0");
                         var pdf = new jsPDF();
                         pdf.addImage(img, 'JPEG', 5, 25, 200, 200);
-                        pdf.save('mapa.pdf');
+                        pdf.save('document.pdf');
 
                        
                         $('input[name=fecha]').prop('type', 'date');
@@ -388,13 +406,15 @@
             $("#pdfwork").hide();
             $("#agregar").hide();
             $("#eliminar").hide();
+            $(".actualizar").hide();
+            $(".eliminarFila").hide();
             html2canvas($("#form"), {
                     useCORS: true,
                     onrendered: function(canvas) {
                         var img =canvas.toDataURL("image/jpeg,1.0");
                         var pdf = new jsPDF();
                         pdf.addImage(img, 'JPEG', 5, 25, 200, 100);
-                        pdf.save('mapa.pdf');
+                        pdf.save('document.pdf');
 
                         $('input[name=fecha]').prop('type', 'date');
                         $('input[name=pagina]').prop('type', 'number');
@@ -408,21 +428,127 @@
                         $("#pdfwork").show();
                         $("#agregar").show();   
                         $("#eliminar").show();
+                        $(".actualizar").show();
+                        $(".eliminarFila").show();
                         
                     }
                        
             });
             
         });
-
+        
 
         $(document).ready(function(){
-            var i=0;
-            $('#agregar').click(function(){
-                i++;
-                $('#dynamic_field').append('<tr id="addr'+i+'" ><th scope="row"> '+i+'</th><td><input type="text" name="actividad[]" id="actividad"> </td><td><input type="text" name="responsable_especifico[]" ></td><td><input type="text" name="semana[]" ></td><td><input type="checkbox"  name="semana1[]"  ></td><td><input type="checkbox"  name="semana2[]" ></td><td><input type="checkbox" name="semana3[]" ></td><td><input type="checkbox" name="semana4[]" ></td></tr> ');
-            });
+         
 
+            var i=0;
+            
+            $('#agregar').click(function(){
+              
+                i++;
+                $('#dynamic_field').append('<tr id="addr'+i+'" ><th scope="row"> '+i+'</th><td><input class="form-control" type="text" name="actividad[]" id="actividad"> </td><td><input class="form-control" type="text" name="responsable_especifico[]" ></td><td><input class="form-control" type="text" name="semana[]" ></td><td><input type="text" class="form-control" name="semana1[]"  ></td><td><input type="text" class="form-control" name="semana2[]" ></td><td><input type="text" class="form-control" name="semana3[]" ></td><td><input type="text" class="form-control" name="semana4[]" ></td> <td><button id="guardarFila"   type="button" class="btn btn-danger"><i class="fas fa-plus-circle"></i></button> </td> </tr> ');
+                $('#guardarFila').click(function(){
+                  var form = $(this).closest("tr");
+                  var index = form.text();
+                  //console.log(form.children('td').find('input')[2].value) ;
+                  var actividad = form.children('td').find('input')[0].value;
+                  var responsable = form.children('td').find('input')[1].value;
+                  var semana = form.children('td').find('input')[2].value;
+                  var semana1 = form.children('td').find('input')[3].value;
+                  var semana2 = form.children('td').find('input')[4].value;
+                  var semana3 = form.children('td').find('input')[5].value;
+                  var semana4 = form.children('td').find('input')[6].value;
+                  var idPrograma = document.getElementById('idPrograma').value;
+                  
+                  formData = {
+                    "actividad": actividad,
+                    "responsable": responsable,
+                    "semana":semana,
+                    "semana1":semana1,
+                    "semana2":semana2,
+                    "semana3":semana3,
+                    "semana4":semana4,
+                    "idPrograma":idPrograma
+                  }
+                  console.log(formData);
+                  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                  $.post("/guardar2",{'data':formData, '_token':CSRF_TOKEN },function(result){
+                    console.log(result);
+                    location.reload();
+                  }).fail(function(){
+                      console.log("error")
+                  });
+
+                });      
+            });
+            
+                $('#actualizar').click(function(){
+                  //console.log("e");
+                  //confirm("Press a button!");
+                  var form = $(this).closest("tr");
+                  var index = form.text();
+                  //console.log(form.children('td').find('input')[2].value) ;
+                  var actividad = form.children('td').find('input')[0].value;
+                  var responsable = form.children('td').find('input')[1].value;
+                  var semana = form.children('td').find('input')[2].value;
+                  var semana1 = form.children('td').find('input')[3].value;
+                  var semana2 = form.children('td').find('input')[4].value;
+                  var semana3 = form.children('td').find('input')[5].value;
+                  var semana4 = form.children('td').find('input')[6].value;
+                  var id = document.getElementById('identificadorFila').value;
+                  
+                  formData = {
+                    "actividad": actividad,
+                    "responsable": responsable,
+                    "semana":semana,
+                    "semana1":semana1,
+                    "semana2":semana2,
+                    "semana3":semana3,
+                    "semana4":semana4,
+                    "id":id
+                  }
+                  console.log(formData);
+                  //return;
+                  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                  $.post("/editar",{'data':formData, '_token':CSRF_TOKEN },function(result){
+                    console.log(result);
+                  }).fail(function(){
+                      console.log("error")
+                  });
+
+                }); 
+                $('#eliminarFila').click(function(){
+                  //console.log("e");
+                  $("#mi-modal").modal('show');
+                    $("#modal-btn-si").on("click", function(){
+                        
+                        $("#mi-modal").modal('hide');
+                      
+                      var id = document.getElementById('identificadorFila').value;
+                      
+                      formData = {
+                        "id":id
+                      }
+                      console.log(formData);
+                      //return;
+                      var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                      $.post("/eliminar",{'data':formData, '_token':CSRF_TOKEN },function(result){
+                        console.log(result);
+                        location.reload();
+                      }).fail(function(){
+                          console.log("error")
+                      });
+                    });
+                    $("#modal-btn-no").on("click", function(){
+                      
+                      $("#mi-modal").modal('hide');
+                    });
+                }); 
+                
+            
+            $('#guardarFila').click(function(){
+              console.log("sedrf");
+           });
             $("#eliminar").click(function(){
               console.log(i);
                 if(i>0){
@@ -469,7 +595,6 @@
         });
 
        
-
 
       </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>

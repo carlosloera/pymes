@@ -75,7 +75,7 @@
                                 <?php $i++; ?>
                             @endforeach
                             <br>
-                                <textarea class="form-control col-md-6" placeholder="Comentarios" ></textarea>
+                                <textarea class="form-control col-md-6" name="comment[{{$j}}]" placeholder="Comentarios" >{{ $closedA->comment }}</textarea>
                             <input type="hidden" name="id_question[{{$j}}]" value="{{ $question->id_question }}">
                         @endif
                         @if( $question->type == 'Open' )
@@ -93,7 +93,7 @@
                                 <input type="text" name="answer[{{$j}}]" class="form-control col-md-6" placeholder="Ingresar la respuesta" value="{{ $valor }}">
                                 <input type="hidden" name="id_question[{{$j}}]" value="{{ $question->id_question}}">
                                 <br>
-                                <textarea class="form-control col-md-6" placeholder="Comentarios" ></textarea>
+                                <textarea class="form-control col-md-6" name="comment[{{$j}}]" placeholder="Comentarios" >{{ $openA->comment }}</textarea>
                               
                         @endif
                         @if( $question->type == 'Binary' )
@@ -119,7 +119,7 @@
                             </div>  
                             <input type="hidden" name="id_question[{{$j}}]" value="{{ $question->id_question }}"> 
                             <br>
-                                <textarea class="form-control col-md-6" placeholder="Comentarios" ></textarea>
+                                <textarea class="form-control col-md-6" name="comment[{{$j}}]" placeholder="Comentarios" >{{ $binary->comment }}</textarea>
                         @endif
                     </div>
                 </div>   

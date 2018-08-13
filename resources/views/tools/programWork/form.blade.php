@@ -3,10 +3,11 @@
 @section('herramientas')
 
 
-
 <div class="container">
+     
 
     <form action="{{ route('crearWork') }}" method="POST" id="form">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @csrf
     <div class="form-row">
         <div class="col-xs-12 col-md-4">
@@ -88,16 +89,16 @@
     <table class="table  table-bordered">
     <thead>
         <tr>
-            <th scope="col"  rowspan="3" >Numero</th>
+            <th scope="col"  rowspan="3" colspan="1">Numero</th>
             <th scope="col" rowspan="3"  >Actividad</th>
             <th scope="col" rowspan="3"  >Responsable Especifico</th>
             
             
-            <th colspan="5">Duracion</th>
+            <th colspan="6">Duracion</th>
             
         </tr>    
         <tr>
-            <th colspan="5">Mes</th>
+            <th colspan="6">Mes</th>
            
         </tr> 
         <tr>
@@ -106,7 +107,7 @@
             <th colspan="1">        </th>
             <th colspan="1">        </th>
             <th colspan="1">        </th>
-            <th colspan="1">        </th>
+            <th colspan="2">        </th>
         </tr>
            
         
@@ -123,13 +124,33 @@
             <th scope="row">{{ $i }}</th>
                 <td><input type="text" class="form-control" name="actividad[]" value="{{ $num->actividad }}"  id="actividad" required> </td>
                 <td><input type="text" class="form-control" name="responsable_especifico[]" value="{{ $num->responsable }}" required></td>
-                <td><input type="text" class="form-control" name="semana[]" required></td>
-                <td><input type="checkbox" name="semana1[]"></td>
-                <td><input type="checkbox" name="semana2[]"></td>
-                <td><input type="checkbox" name="semana3[]"></td>
-                <td><input type="checkbox" name="semana4[]"></td>
-               
-              
+                <td><input type="text" class="form-control" name="semana[]" value="{{ $num->semana }}" required></td>
+                <td><input type="text" class="form-control" name="semana1[] " value="{{ $num->semana1 }}"></td>
+                <td><input type="text" class="form-control" name="semana2[]" value="{{ $num->semana2 }}"></td>
+                <td><input type="text" class="form-control" name="semana3[]" value="{{ $num->semana3 }}"></td>
+                <td><input type="text" class="form-control" name="semana4[]" value="{{ $num->semana4 }}"></td>
+                <td>
+                    <button id="actualizar" type="button" class="actualizar btn btn-danger"><i class=" fas fa-edit"></i></button>
+                    <br>
+                    <button id="eliminarFila" type="button" class="eliminarFila btn btn-danger" style="margin-top:5px;"><i class=" fas fa-trash-alt"></i></button>
+                    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            
+                            <h4 class="modal-title" id="myModalLabel">Eliminar esta fila?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" id="modal-btn-si">Si</button>
+                            <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <input id="identificadorFila" type="hidden" value="{{ $num->id }}">
+                
+                
+                
             </tr>
             
             @php
@@ -192,7 +213,7 @@
             </div>
 
             <input type="hidden" value="{{ $work->process_id }}" name="process_id">
-
+            <input type="hidden" id="idPrograma" type="text" value="{{ $work->id }}">
         </div>
         <div class="row">
             <button type="submit" class="btn btn-danger " id="registrar" >
@@ -211,6 +232,10 @@
 </div>
 <br>
 <div class="row">
+
            <!-- <a class="btn btn-success" href="{{ route('proceso',   $work->process_id) }}">Regresar</a>-->
 </div>
+<srcript>
+
+</srcript>
 @endsection

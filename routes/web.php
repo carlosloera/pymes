@@ -54,7 +54,9 @@ Route::get('registro/{id}','ProcessController@recordFind')->name('registro');
 Route::post('crearRegistri','ProcessController@createRecordFind')->name('crearRegistro');
 Route::get('pdfRegistro/{id}','ProcessController@pdfRegistro')->name('pdfRegistro');
 
-
+Route::post('guardar2','ProcessController@storeWork')->name('guardar2');
+Route::post('editar','ProcessController@editWork')->name('editar');
+Route::post('eliminar','ProcessController@deleteWork')->name('eliminar');
 //Cesar-----------------------------------
 Route::get('/Administrador','userController@index')->name('Administrador');
 Route::get('/Administrador/{id}/mostrar','userController@show')->name('mostrarAdministrador');

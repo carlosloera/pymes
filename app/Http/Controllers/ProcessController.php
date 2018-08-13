@@ -280,7 +280,51 @@ class ProcessController extends Controller
         return view('tools.programWork.form', compact('work','worknum','id'));
 
     }
-
+    public function storeWork(Request $request){
+        if( $request->ajax() ){
+            //return \Response::json($request)
+            $worknum = new WorkProgramNum();
+            $worknum->work_programs_id = $request->data["idPrograma"];
+            $worknum->actividad =  $request->data["actividad"];
+            $worknum->responsable =  $request->data["responsable"];
+            $worknum->semana = $request->data["semana"];
+            $worknum->semana1 =  $request->data["semana1"];
+            $worknum->semana2 =  $request->data["semana2"];
+            $worknum->semana3 =  $request->data["semana3"];
+            $worknum->semana4 =  $request->data["semana4"];
+            $worknum->save();
+            
+            return response()->json("guardado");
+        }
+           
+        
+       
+    }
+    public function editWork(Request $request){
+//        return response()->json( intval( $request->data['id']));
+        if( $request->ajax() ){
+            $worknum = WorkProgramNum::where('id',intval( $request->data['id']))->first();
+            //return response()->json($worknum);
+            $worknum->actividad =  $request->data["actividad"];
+            $worknum->responsable =  $request->data["responsable"];
+            $worknum->semana = $request->data["semana"];
+            $worknum->semana1 =  $request->data["semana1"];
+            $worknum->semana2 =  $request->data["semana2"];
+            $worknum->semana3 =  $request->data["semana3"];
+            $worknum->semana4 =  $request->data["semana4"];
+            $worknum->save();
+            return response()->json("actualizado");
+        }
+    }
+    public function deleteWork(Request $request){
+               //return response()->json( $request);
+                if( $request->ajax() ){
+                    $worknum = WorkProgramNum::find(intval( $request->data['id']));
+                    //return response()->json($worknum);
+                    $worknum->delete();
+                    return response()->json("eliminado");
+                }
+    }
     public function createWorkProgram(Request $request)
     {
         //dd($request);
@@ -304,7 +348,8 @@ class ProcessController extends Controller
         $work->elaboro = $request->elaboro;
         $work->reviso = $request->reviso;
         $work->autorizo = $request->autorizo;
-        
+
+        /*
         $nums = WorkProgramNum::where('work_programs_id',$work->id)->get();
         $length = count($nums);
         if( $max>$length ){
@@ -316,6 +361,11 @@ class ProcessController extends Controller
                 $worknum->work_programs_id = $work->id;
                 $worknum->actividad =  $request->actividad[$i];
                 $worknum->responsable =  $request->responsable_especifico[$i];
+                $worknum->semana = $request->semana[$i] ;
+                $worknum->semana1 =  $request->semana1[$i];
+                $worknum->semana2 =  $request->semana2[$i];
+                $worknum->semana3 =  $request->semana3[$i];
+                $worknum->semana4 =  $request->semana4[$i];
                 $worknum->save();
             }
 
@@ -364,8 +414,9 @@ class ProcessController extends Controller
                 $worknum->responsable[$i] =  $request->responsable_especifico[$i];
                 $worknum->save();
             }
-            */
-        }
+            
+        }*/
+        $worknum = WorkProgramNum::where('work_programs_id',$work->id)->get();
         $work->save();
         
        // return redirect()->route('workProgram', ['id' =>  $work->process_id]);

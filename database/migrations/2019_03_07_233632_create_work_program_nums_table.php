@@ -20,6 +20,11 @@ class CreateWorkProgramNumsTable extends Migration
             $table->integer('numero');
             $table->string('actividad');
             $table->string('responsable');
+            $table->integer('semana');
+            $table->string('semana1');
+            $table->string('semana2');
+            $table->string('semana3');
+            $table->string('semana4');
             $table->timestamps();
         });
     }

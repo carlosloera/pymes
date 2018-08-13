@@ -202,7 +202,7 @@ class questionController extends Controller
     public function obtener($id,$id_category){
         //dd($id_category);
         $questions = Question::where('id_category',$id_category)->get();
-      
+        
         $closed = Closed_answer::all();
        // $answers = Answer::where('id_periods',$id)->get();
         return view('questions.cuestionario',compact('questions','id'));

@@ -12,6 +12,11 @@ class WorkProgramNum extends Model
             'numero',
             'actividad',
             'responsable',
+            'semana',
+            'semana1',
+            'semana2',
+            'semana3',
+            'semana4',
     ];
     public function workprogram()
     {
