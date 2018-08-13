@@ -446,7 +446,7 @@
             $('#agregar').click(function(){
               
                 i++;
-                $('#dynamic_field').append('<tr id="addr'+i+'" ><th scope="row"> '+i+'</th><td><input class="form-control" type="text" name="actividad[]" id="actividad"> </td><td><input class="form-control" type="text" name="responsable_especifico[]" ></td><td><input class="form-control" type="text" name="semana[]" ></td><td><input type="text" class="form-control" name="semana1[]"  ></td><td><input type="text" class="form-control" name="semana2[]" ></td><td><input type="text" class="form-control" name="semana3[]" ></td><td><input type="text" class="form-control" name="semana4[]" ></td> <td><button id="guardarFila"   type="button" class="btn btn-danger"><i class="fas fa-plus-circle"></i></button> </td> </tr> ');
+                $('#dynamic_field').append('<tr id="addr'+i+'" ><th scope="row"> '+(i-1)+'</th><td><input class="form-control" type="text" name="actividad[]" id="actividad"> </td><td><input class="form-control" type="text" name="responsable_especifico[]" ></td><td><input class="form-control" type="text" name="semana[]" ></td><td><input type="text" class="form-control" name="semana1[]"  ></td><td><input type="text" class="form-control" name="semana2[]" ></td><td><input type="text" class="form-control" name="semana3[]" ></td><td><input type="text" class="form-control" name="semana4[]" ></td> <td><button id="guardarFila"   type="button" class="btn btn-danger"><i class="fas fa-plus-circle"></i></button> </td> </tr> ');
                 $('#guardarFila').click(function(){
                   var form = $(this).closest("tr");
                   var index = form.text();
@@ -481,8 +481,11 @@
 
                 });      
             });
-            
-                $('#actualizar').click(function(){
+            var x = document.getElementById("dynamic_field").rows.length;
+
+            console.log(x);
+            for( var i=1; i<x+1; i++){
+                $('#actualizar'+i).click(function(){
                   //console.log("e");
                   //confirm("Press a button!");
                   var form = $(this).closest("tr");
@@ -495,8 +498,7 @@
                   var semana2 = form.children('td').find('input')[4].value;
                   var semana3 = form.children('td').find('input')[5].value;
                   var semana4 = form.children('td').find('input')[6].value;
-                  var id = document.getElementById('identificadorFila').value;
-                  
+                  var id = document.getElementById('identificadorFila_' +(i-1).toString()).value;                  
                   formData = {
                     "actividad": actividad,
                     "responsable": responsable,
@@ -517,15 +519,20 @@
                   });
 
                 }); 
-                $('#eliminarFila').click(function(){
+                $('#eliminarFila'+i).click(function(){
                   //console.log("e");
                   $("#mi-modal").modal('show');
                     $("#modal-btn-si").on("click", function(){
                         
                         $("#mi-modal").modal('hide');
-                      
-                      var id = document.getElementById('identificadorFila').value;
-                      
+                      //var form = $(this).closest("tr");
+                      //var identificador = ("identificadorFila_" +  i-1);
+                      //console.log(identificador);
+                      //return;
+                      var id = document.getElementById('identificadorFila_' +(i-1).toString()).value;
+                      //var semana4 = form.children('td').find('input')[7].value;
+                      //console.log(id);
+                      //return;
                       formData = {
                         "id":id
                       }
@@ -544,7 +551,7 @@
                       $("#mi-modal").modal('hide');
                     });
                 }); 
-                
+            }    
             
             $('#guardarFila').click(function(){
               console.log("sedrf");

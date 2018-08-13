@@ -130,9 +130,9 @@
                 <td><input type="text" class="form-control" name="semana3[]" value="{{ $num->semana3 }}"></td>
                 <td><input type="text" class="form-control" name="semana4[]" value="{{ $num->semana4 }}"></td>
                 <td>
-                    <button id="actualizar" type="button" class="actualizar btn btn-danger"><i class=" fas fa-edit"></i></button>
+                    <button id="actualizar{{ $i }}" type="button" class="actualizar btn btn-danger"><i class=" fas fa-edit"></i></button>
                     <br>
-                    <button id="eliminarFila" type="button" class="eliminarFila btn btn-danger" style="margin-top:5px;"><i class=" fas fa-trash-alt"></i></button>
+                    <button id="eliminarFila{{ $i }}" type="button" class="eliminarFila btn btn-danger" style="margin-top:5px;"><i class=" fas fa-trash-alt"></i></button>
                     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
                     <div class="modal-dialog modal-sm">
                         <div class="modal-content">
@@ -147,7 +147,7 @@
                         </div>
                     </div>
                     </div>
-                    <input id="identificadorFila" type="hidden" value="{{ $num->id }}">
+                    <input id="identificadorFila_{{ $i }}" type="hidden" value="{{ $num->id }}">
                 
                 
                 
@@ -169,7 +169,7 @@
             <!--<a class="btn btn-success" href="{{ route('pdfWork', $work->process_id) }}">Imprimir</a>-->
         </div>
         <div class="col-md-1 offset-md-1">
-                <button id="eliminar" type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i> Eliminar Fila</button> 
+                <!--<button id="eliminar" type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i> Eliminar Fila</button>--> 
         </div>
     </div>
     <h1></h1>
